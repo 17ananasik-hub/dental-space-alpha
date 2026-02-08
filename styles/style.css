@@ -80,11 +80,11 @@ ul {
     padding: 48px 0px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1240px;
+.header-container {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 16px 24px;
+    width: 100%;
 }
 
 :root {
@@ -163,6 +163,11 @@ ul {
 /*Header*/
 
 .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -170,6 +175,10 @@ ul {
     margin-bottom: 56px;
     background-color: var(--color-primary-brand-light);
     border-radius: 32px;
+}
+
+.logo {
+    margin: 16px;
 }
 
 /*Hero*/
@@ -216,27 +225,7 @@ ul {
         0 16px 24px rgba(255, 255, 255, 0.418);
 }
 
-/*Advantages*/
 
-.advantages-section {
-    display: flex;
-    gap: 12px;
-    padding: 8px;
-    margin-bottom: 64px;
-}
-
-.advantages-text {
-    padding: 24px 24px;
-    background-color: var(--color-primary-brand-light);
-    border-radius: 32px;
-    text-align: center;
-}
-
-.advantages-image {
-    border-radius: 56px;
-    display: flex;
-    align-items: stretch;
-}
 
 /*Procedures*/
 .procedure-card {
@@ -313,6 +302,72 @@ ul {
 .procedure-card-title {
     text-shadow: 0 0 8px rgb(0, 0, 0);
     font-size: 28px;
+}
+
+/*Dentist*/
+
+.cards-container {
+    width: 1100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Карточка */
+.card {
+    position: relative;
+    width: 300px;
+    height: 420px;
+    background-color: var(--color-primary-light);
+    margin: 20px;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: 0.4s;
+}
+
+.card:hover {
+    box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--color-primary-light);
+}
+
+/* Блок с изображением */
+.imgBx {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.4s ease;
+}
+
+.imgBx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Контент */
+.content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--color-primary-light);
+
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+/* Hover-эффект */
+.card:hover .imgBx {
+    transform: translateY(-60px);
+}
+
+.card:hover .content {
+    transform: translateY(0);
 }
 
 /*Workflow*/
@@ -478,4 +533,77 @@ ul {
 
 .contact-button {
     margin-top: 12px;
+}
+
+/*Advantages*/
+
+.advantages-section {
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+    margin-bottom: 64px;
+}
+
+.advantages-text {
+    padding: 24px 24px;
+    background-color: var(--color-primary-brand-light);
+    border-radius: 32px;
+    text-align: center;
+}
+
+.advantages-image {
+    border-radius: 56px;
+    display: flex;
+    align-items: stretch;
+}
+
+/*Results*/
+
+.results-section {
+    margin-bottom: 56px;
+}
+
+.result-title {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.results-gallery {
+    display: flex;
+    justify-content: center;
+    margin: auto 56px;
+}
+
+.results-card {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--color-primary-brand-light);
+}
+
+
+.results-photo {
+    position: absolute;
+    inset: 0;
+}
+
+.results-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.results-photo--after {
+    z-index: 2;
+    transition: opacity 0.4s ease;
+}
+
+.results-card:hover .results-photo--after {
+    opacity: 0;
 }
