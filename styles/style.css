@@ -158,12 +158,13 @@ ul {
     transform: translateY(3px);
     transition: 0.3s;
     cursor: pointer;
+    box-shadow:
+        0 16px 24px rgba(0, 0, 0, 0.418);
 }
 
 /*Header*/
 
 .header {
-    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -291,6 +292,7 @@ ul {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 24px;
 }
 
 .procedures-list::before {
@@ -510,7 +512,6 @@ ul {
     align-items: center;
 
     position: relative;
-    background: url("../img/form-bg.gif") center / cover no-repeat;
     overflow: hidden;
 }
 
@@ -622,4 +623,326 @@ ul {
 
 .results-card:hover .results-photo--after {
     opacity: 0;
+}
+
+/*Modal*/
+
+.backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 32px;
+}
+
+
+.modal-contact {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-height: 880px;
+    max-width: 880px;
+    padding: 100px;
+    backdrop-filter: blur(12px);
+    background: rgba(97, 97, 97, 0.2);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+
+
+.backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    fill: var(--color-primary-brand-light);
+}
+
+.modal-contact::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-contact::-webkit-scrollbar-thumb {
+    background-color: rgba(194, 194, 194, 0.25);
+    border-radius: 3px;
+}
+
+.input-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 42px;
+}
+
+
+
+.form-input {
+    border: 1px, solid var(--color-primary-brand-light);
+    border-radius: 24px;
+    height: 40px;
+    width: 400px;
+    padding: 24px;
+    background-color: transparent;
+}
+
+
+
+.modal-button {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-polit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 64px;
+    align-items: center;
+}
+
+/*Modal-Price*/
+
+.price-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 32px;
+}
+
+.modal-price {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-height: 880px;
+    max-width: 880px;
+    padding: 100px;
+    backdrop-filter: blur(12px);
+    background: rgba(97, 97, 97, 0.2);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+
+
+.price-backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-price-btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    fill: var(--color-primary-brand-light);
+}
+
+.modal-price::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-price::-webkit-scrollbar-thumb {
+    background-color: rgba(194, 194, 194, 0.25);
+    border-radius: 3px;
+}
+
+.price-card {
+    height: 300px;
+    width: 600px;
+
+    padding: 32px 28px;
+    margin: 24px;
+
+    border: 1px solid var(--color-primary-light);
+    border-radius: 12px;
+}
+
+.price-card h2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*Procedures-modal*/
+
+.procedures-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 32px;
+}
+
+.modal-procedures {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-height: 880px;
+    max-width: 880px;
+    padding: 100px;
+    backdrop-filter: blur(12px);
+    background: rgba(97, 97, 97, 0.2);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+
+
+.procedures-backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-procedures-btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    fill: var(--color-primary-brand-light);
+}
+
+.modal-procedures::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-procedures::-webkit-scrollbar-thumb {
+    background-color: rgba(194, 194, 194, 0.25);
+    border-radius: 3px;
+}
+
+.procedures-card {
+    height: 300px;
+    width: 600px;
+
+    padding: 32px 28px;
+    margin: 24px;
+
+    border: 1px solid var(--color-primary-light);
+    border-radius: 12px;
+
+}
+
+/*Diploma-Price*/
+
+.diploma-backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 32px;
+}
+
+.modal-diploma {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-height: 880px;
+    max-width: 880px;
+    padding: 100px;
+    backdrop-filter: blur(12px);
+    background: rgba(97, 97, 97, 0.2);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+
+
+.diploma-backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-diploma-btn-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    fill: var(--color-primary-brand-light);
+}
+
+.modal-diploma::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-diploma::-webkit-scrollbar-thumb {
+    background-color: rgba(194, 194, 194, 0.25);
+    border-radius: 3px;
+}
+
+.diploma-card {
+    height: 300px;
+    width: 600px;
+    margin: 24px;
+
+    border: 1px solid var(--color-primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: auto;
+    overflow: hidden;
+}
+
+.diploma-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

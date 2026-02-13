@@ -25,8 +25,8 @@
                         <img class="logo" src="img/logo.png" alt="logo" height="80px">
                     </a>
                     <div class="buttons">
-                        <button class="button">Прайс</button>
-                        <button class="button">Запис</button>
+                        <button class="button modal-price-btn-open">Прайс</button>
+                        <button class="button modal-btn-open">Запис</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <h1>Dental-Space</h1>
                 <p><span>вул. Пушкіна дім Колотушкіна 13</span>
                 </p>
-                <button class="button hero-button">Запис</button>
+                <button class="button hero-button modal-btn-open">Запис</button>
 
             </div>
         </section>
@@ -51,7 +51,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
                         <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -60,7 +60,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-2.jpg" alt="procedures-2">
                         <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -69,7 +69,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
                         <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -78,7 +78,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
                         <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -87,7 +87,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
                         <h3 class="procedure-card-title">Дайте деняк</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -96,7 +96,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
                         <h3 class="procedure-card-title">Дай краба</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -105,7 +105,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
                         <h3 class="procedure-card-title">Попиздіти</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -114,7 +114,7 @@
                     <div class="procedure-content">
                         <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
                         <h3 class="procedure-card-title">Фоткаю лоха</h3>
-                        <button class="button procedure-card-button">Детальніше</button>
+                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
                     </div>
 
                 </article>
@@ -252,7 +252,7 @@
                     кваліфікації наших стоматологів,також ми постійно розширюємо наш асортимент послуг,
                     та націленні тільки на найкращий результат про що свідчать вже 100+ задоволенних клієнтів!</p>
                 <div class="advantages-button">
-                    <button class="button" type="button">Наші сертифікати</button>
+                    <button class="button modal-diploma-btn-open" type="button">Наші сертифікати</button>
                 </div>
             </div>
             <div>
@@ -291,10 +291,221 @@
                 </div>
             </div>
         </section>
-        <footer class="footer container">
 
-        </footer>
     </main>
+    <footer class="footer container">
+
+    </footer>
+    <div class="backdrop is-hidden">
+        <div class="modal-contact">
+            <button class="modal-btn-close" type="button">
+            </button>
+            <h1>Введіть інформацію</h1>
+            <p>Заповніть форму щоб ми зв'язалися з Вами!</p>
+            <form name="modal-form" autocomplete="off">
+                <div class="input-info">
+                    <label class="form-label visually-hidden" for="user-name">Ім'я</label>
+                    <input class="form-input" type="text" name="user-name" id="user-name" placeholder="Ім'я" required
+                        minlength="2">
+                </div>
+
+                <div class="input-info">
+                    <label class="form-label visually-hidden" for="user-tel">Телефон</label>
+                    <input class="form-input" type="tel" name="user-tel" id="user-tel" placeholder="Телефон" required
+                        maxlength="13" pattern="^\+380[0-9]{9}$">
+                </div>
+
+                <div class="input-info">
+                    <label class="form-label visually-hidden" for="user-email">Електронна пошта</label>
+                    <input class="form-input" type="email" name="user-email" id="user-email"
+                        placeholder="Електронна пошта" required>
+                </div>
+
+                <div class="modal-button"><button class="button" type="submit">Замовити дзвінок</button>
+                </div>
+            </form>
+            <p class="modal-polit">Натискаючи кнопку я погоджуюсь з <a class="address-link" href="#">політикою
+                    конфідеційності</a></p>
+
+        </div>
+    </div>
+    <div class="price-backdrop is-hidden">
+        <div class="modal-price">
+            <button class="modal-price-btn-close" type="button">
+            </button>
+            <h1>Прайс на послуги</h1>
+            <ul class="price-list">
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="price-card">
+                        <h1>Профілактика</h1>
+                        <p>В ціну входить:</p>
+                        <p>Бесіда із лікарем
+                            Планування лікування
+                            Запис на прийом</p>
+                        <h2>120$</h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="procedures-backdrop is-hidden">
+        <div class="modal-procedures">
+            <button class="modal-procedures-btn-close" type="button">
+            </button>
+            <ul>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+                <li>
+                    <div class="procedures-card">
+                        <h1>
+                            Чистка каналів
+                        </h1>
+                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
+                        <h2>100$</h2>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="diploma-backdrop is-hidden">
+        <div class="modal-diploma">
+            <button class="modal-diploma-btn-close" type="button">
+            </button>
+            <ul>
+                <li>
+                    <div class="diploma-card">
+                        <img src="./img/diploma.jpg" alt="diploma">
+                    </div>
+                </li>
+                <li>
+                    <div class="diploma-card">
+                        <img src="./img/diploma.jpg" alt="diploma">
+                    </div>
+                </li>
+                <li>
+                    <div class="diploma-card">
+                        <img src="./img/diploma.jpg" alt="diploma">
+                    </div>
+                </li>
+                <li>
+                    <div class="diploma-card">
+                        <img src="./img/diploma.jpg" alt="diploma">
+                    </div>
+                </li>
+                <li>
+                    <div class="diploma-card">
+                        <img src="./img/diploma.jpg" alt="diploma">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js-scripts/modal.js"></script>
+    <script src="./js-scripts/price-modal.js"></script>
+    <script src="./js-scripts/procedures.js"></script>
+    <script src="./js-scripts/diploma.js"></script>
 </body>
 
 </html>
