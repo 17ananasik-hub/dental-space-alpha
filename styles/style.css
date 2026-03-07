@@ -80,12 +80,6 @@ ul {
     padding: 48px 0px;
 }
 
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px 24px;
-    width: 100%;
-}
 
 :root {
     --color-primary-brand: #1c1c1c;
@@ -94,7 +88,7 @@ ul {
 }
 
 .link {
-    color: var(--color-primary-brand-light);
+    color: var(--color-primary-light);
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
@@ -107,6 +101,7 @@ ul {
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .visually-hidden {
@@ -164,22 +159,39 @@ ul {
 
 /*Header*/
 
-.header {
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+.header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
     padding: 0 56px;
-    margin-bottom: 56px;
+    margin: 56px auto;
     background-color: var(--color-primary-brand-light);
-    border-radius: 32px;
+}
+
+.header-menu {
+    display: flex;
+}
+
+.header-item {
+    margin: 12px;
+}
+
+.header-items {
+    display: flex;
 }
 
 .logo {
-    margin: 16px;
+    margin: 4px;
 }
 
 /*Hero*/
@@ -193,7 +205,7 @@ ul {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 48px;
+    border-radius: 12px;
     margin-bottom: 56px;
 }
 
@@ -334,11 +346,65 @@ ul {
     margin-right: auto;
 }
 
-/* Карточка */
+.carousel-wrapper {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease;
+}
+
+.card {
+    flex: 0 0 calc((100% - 40px)/3);
+    /* 3 карточки на десктоп */
+    height: 250px;
+    background: #eee;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+/* мобильные: 1 карточка */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 80%;
+    }
+}
+
+/* кнопки */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
+}
+
 .card {
     position: relative;
-    width: 300px;
-    height: 420px;
+    width: 250px;
+    height: 480px;
     background-color: var(--color-primary-light);
     margin: 20px;
     border-radius: 32px;
@@ -353,7 +419,6 @@ ul {
     border: 1px solid var(--color-primary-light);
 }
 
-/* Блок с изображением */
 .imgBx {
     position: absolute;
     inset: 0;
@@ -366,7 +431,6 @@ ul {
     object-fit: cover;
 }
 
-/* Контент */
 .content {
     position: absolute;
     bottom: 0;
@@ -379,7 +443,6 @@ ul {
     transition: transform 0.4s ease;
 }
 
-/* Hover-эффект */
 .card:hover .imgBx {
     transform: translateY(-60px);
 }
@@ -390,20 +453,34 @@ ul {
 
 /*Workflow*/
 
+
 .workflow-text {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+
+    z-index: 1;
     font-weight: 800;
-    font-size: 14px;
-    background-color: var(--color-primary-brand);
-    padding: 16px 16px 0;
-    border-radius: 0 0 24px 24px;
-    box-shadow:
-        0 16px 24px rgba(0, 0, 0, 0.418);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    font-size: 22px;
+
+    text-shadow: 0 0 8px rgba(17, 17, 17, 0.3);
+}
+
+.slideshow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+
+    z-index: 1;
 }
 
 
@@ -418,9 +495,10 @@ ul {
 
 .slideshow {
     position: relative;
-    width: 900px;
+    width: 1100px;
     overflow: hidden;
-    border-radius: 40px;
+    border-radius: 18px;
+    height: 550px;
 }
 
 .slideshow ul {
@@ -431,7 +509,7 @@ ul {
 }
 
 .slideshow ul li {
-    width: 900px;
+    width: 1100px;
     display: inline-block;
     flex: 0 0 100%;
 }
@@ -478,78 +556,74 @@ ul {
 
 /*Form*/
 
-.form-title {
-    font-weight: 800;
-    font-size: 24px;
-    text-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
-}
-
-.form-input {
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(8px);
-    -webkit-text-fill-color: var(--color-primary-light);
-    border-radius: 12px;
-    border: none;
-
-    padding: 12px 24px;
-    margin: 12px;
-}
-
-.form-card {
-    background-image: url("../img/form-bg.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-
-    padding: 32px 40px;
-
-    border: none;
-    border-radius: 32px;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.form-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(10px);
-    background: rgba(97, 97, 97, 0.2);
-}
-
-.form-card>* {
-    position: relative;
-    z-index: 1;
-}
-
-.contact-map {
-    border: none;
-    border-radius: 40px;
-    height: 433px;
-    max-width: 433px;
-    width: 100%;
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
-}
-
 .contact-form {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 12px;
-}
-
-.form {
+    max-width: 900px;
+    margin: 0 auto;
     margin-bottom: 56px;
 }
 
+.form-card {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    padding: 40px;
+    background-color: var(--color-primary-light);
+    border-radius: 24px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 380px;
+}
+
+.input-info {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    color: var(--color-primary-light);
+}
+
 .contact-button {
-    margin-top: 12px;
+    width: 100%;
+    margin-top: 10px;
+    background-color: var(--color-primary-brand-light);
+    -webkit-text-fill-color: var(--color-primary-light);
+}
+
+.contact-button:hover {
+    background-color: var(--color-primary-light);
+    -webkit-text-fill-color: var(--color-primary-brand-light);
+    border: 1px solid var(--color-primary-brand-light);
+}
+
+.contact-map {
+    width: 430px;
+    height: 430px;
+
+    border-radius: 24px;
+    border: none;
+
+    box-shadow: 0 0 16px rgba(216, 216, 216, 0.527);
+}
+
+.form-title {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    font-weight: 800;
+    -webkit-text-fill-color: var(--color-primary-brand-light);
+    margin-bottom: 24px;
 }
 
 /*Advantages*/
@@ -557,21 +631,45 @@ ul {
 .advantages-section {
     display: flex;
     gap: 12px;
-    padding: 8px;
+    padding: 18px;
+    margin: 24px;
     margin-bottom: 64px;
+    background-image: linear-gradient(rgba(19, 19, 19, 0.3), rgba(19, 19, 19, 0.3)), url(../img/team.jpg);
+    background-position: center 10%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    border-radius: 18px;
 }
 
 .advantages-text {
-    padding: 24px 24px;
-    background-color: var(--color-primary-brand-light);
-    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
     text-align: center;
+    backdrop-filter: blur(4px);
+
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(19, 19, 19, 0.18);
 }
 
-.advantages-image {
-    border-radius: 56px;
+.advantages-card {
     display: flex;
-    align-items: stretch;
+    align-items: center;
+}
+
+.advantages-text h1 {
+    font-weight: 700;
+}
+
+.advantages-button {
+    display: flex;
+
+    margin-left: auto;
+    margin-top: auto;
 }
 
 /*Results*/
@@ -628,6 +726,7 @@ ul {
 /*Modal*/
 
 .backdrop {
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
@@ -686,12 +785,6 @@ ul {
     border-radius: 3px;
 }
 
-.input-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-bottom: 42px;
-}
 
 
 
@@ -699,7 +792,7 @@ ul {
     border: 1px, solid var(--color-primary-brand-light);
     border-radius: 24px;
     height: 40px;
-    width: 400px;
+    width: 300px;
     padding: 24px;
     background-color: transparent;
 }
@@ -721,6 +814,7 @@ ul {
 /*Modal-Price*/
 
 .price-backdrop {
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
@@ -797,6 +891,7 @@ ul {
 /*Procedures-modal*/
 
 .procedures-backdrop {
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
@@ -869,6 +964,7 @@ ul {
 /*Diploma-Price*/
 
 .diploma-backdrop {
+    z-index: 1000;
     position: fixed;
     left: 0;
     right: 0;
