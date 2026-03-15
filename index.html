@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dental-Space</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dental-Space</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
@@ -22,11 +19,19 @@
             <a href="./index.html">
                 <img class="logo" src="img/logo.png" alt="logo" height="60px">
             </a>
-            <div class="header-items">
+
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Відкрити меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="header-items" id="header-navigation">
                 <ul class="header-menu">
-                    <li class="header-item"><a class="link" href="#">Процедури</a></li>
-                    <li class="header-item"><a class="link" href="#">Про нас</a></li>
-                    <li class="header-item"><a class="link" href="#">Контакти</a></li>
+                    <li class="header-item"><a class="link" href="#procedures-section" target="blank">Процедури</a>
+                    </li>
+                    <li class="header-item"><a class="link" href="#advantages-section" target="blank">Про нас</a></li>
+                    <li class="header-item"><a class="link" href="#contacts-section" target="blank">Контакти</a></li>
                 </ul>
                 <div class="buttons">
                     <button class="button modal-price-btn-open">Прайс</button>
@@ -38,159 +43,188 @@
     <main class="container">
         <section class="hero">
             <div class="hero-text">
-                <h1>Dental-Space</h1>
-                <p><span>вул. Пушкіна дім Колотушкіна 13</span>
+                <h1>DentalSpace</h1>
+                <p><span><a class="link" href="#contacts-section" target="blank">вул.Європейська 44б</a></span>
                 </p>
                 <button class="button hero-button modal-btn-open">Запис</button>
 
             </div>
         </section>
-        <section class="procedures">
+        <section class="procedures" id="procedures-section">
+
             <div class="procedures-list">
-                <article class="procedure-card">
+                <div class="carousel-container">
+                    <button class="carousel-btn carousel-btn-left" aria-label="Previous">&#10094;</button>
 
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
-                        <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                    <div class="carousel-viewport">
+                        <div class="carousel-track">
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
+                                    <h3 class="procedure-card-title">Профілактика</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-2.jpg" alt="procedures-2">
+                                    <h3 class="procedure-card-title">Профілактика</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
+                                    <h3 class="procedure-card-title">Профілактика</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
+                                    <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
+                                    <h3 class="procedure-card-title">Дайте деняк</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
+                                    <h3 class="procedure-card-title">Дай краба</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
+                                    <h3 class="procedure-card-title">Попиздіти</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                            <article class="procedure-card">
+
+                                <div class="procedure-content">
+                                    <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
+                                    <h3 class="procedure-card-title">Фоткаю лоха</h3>
+                                    <button
+                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                </div>
+
+                            </article>
+                        </div>
                     </div>
 
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-2.jpg" alt="procedures-2">
-                        <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
-                        <h3 class="procedure-card-title">Профілактика</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
-                        <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
-                        <h3 class="procedure-card-title">Дайте деняк</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
-                        <h3 class="procedure-card-title">Дай краба</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
-                        <h3 class="procedure-card-title">Попиздіти</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
-                <article class="procedure-card">
-
-                    <div class="procedure-content">
-                        <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
-                        <h3 class="procedure-card-title">Фоткаю лоха</h3>
-                        <button class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
-                    </div>
-
-                </article>
+                    <button class="carousel-btn carousel-btn-right" aria-label="Next">&#10095;</button>
+                </div>
             </div>
-        </section>
-        <section class="carousel-section">
-            <div class="carousel-wrapper">
-                <button class="carousel-btn left">&#10094;</button>
 
-                <div class="carousel">
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
+        </section>
+        <section class="carousel-section dentists">
+
+            <div class="carousel-container">
+
+                <button class="carousel-btn carousel-btn-left">&#10094;</button>
+
+                <div class="carousel-viewport">
+
+                    <div class="carousel-track">
+
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
+
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
                         </div>
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="imgBx">
+                                <img src="./img/dantist.jpg" alt="">
+                            </div>
+                            <div class="content">
+                                <h1>Надія</h1>
+                                <p>Лікую вже 10+ років</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
-                        </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
-                        </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
-                        </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
-                        </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="imgBx">
-                            <img src="./img/dantist.jpg" alt="dentist">
-                        </div>
-                        <div class="content">
-                            <h1>Надія</h1>
-                            <p>Лікую вже 10+ років і продовжую в тому ж темпі</p>
-                        </div>
-                    </div>
+
                 </div>
 
-                <button class="carousel-btn right">&#10095;</button>
+                <button class="carousel-btn carousel-btn-right">&#10095;</button>
+
             </div>
+
         </section>
-        <section class="workflow">
+        <section class="workflow" id="contacts-section">
+
             <div class="slide">
                 <div class="slideshow">
-                    <div class="workflow-text">
-                        <h1>Найкращі умови для клієнтів</h1>
-                    </div>
                     <ul>
                         <li>
                             <div class="single-img">
@@ -215,14 +249,13 @@
                     </ul>
                 </div>
             </div>
-        </section>
-        <section class="form">
+
             <form class="contact-form">
 
                 <div class="form-card">
 
                     <div class="contact">
-                        <h2 class="form-title">Заповніть форму для запису</h2>
+                        <h2 class="form-title">Заповніть для запису</h2>
 
                         <div class="input-info">
                             <input class="form-input" type="text" placeholder="Ім'я" required minlength="2">
@@ -241,7 +274,7 @@
                             <input class="form-input" type="text" placeholder="Коментар">
                         </div>
 
-                        <button class="button contact-button" type="submit">
+                        <button class="contact-button" type="submit">
                             Відправити
                         </button>
                     </div>
@@ -255,15 +288,24 @@
                 </div>
 
             </form>
+
         </section>
-        <section class="advantages-section">
-            <div class="advantages-card">
-                <div class="advantages-text">
-                    <h1>DentalSpace - це вибір</h1>
-                    <p>Ми займаємось лікуванням понад 10 років,та постійно підвищуємо
-                        кваліфікації наших стоматологів,також ми постійно розширюємо наш асортимент послуг,
-                        та націленні тільки на найкращий результат про що свідчать вже 100+ задоволенних клієнтів!</p>
+
+        <section class="advantages-section" id="advantages-section">
+            <video class="advantages-video" autoplay muted loop playsinline>
+                <source src="./img/team-video.mp4" type="video/mp4">
+            </video>
+            <div class="advantages-content">
+                <div class="advantages-card">
+                    <div class="advantages-text">
+                        <h1>DentalSpace - це вибір</h1>
+                        <p>Ми займаємось лікуванням понад 10 років,та постійно підвищуємо
+                            кваліфікації наших стоматологів,також ми постійно розширюємо наш асортимент послуг,
+                            та націленні тільки на найкращий результат про що свідчать вже 100+ задоволенних клієнтів!
+                        </p>
+                    </div>
                 </div>
+
             </div>
             <div class="advantages-button">
                 <button class="button modal-diploma-btn-open " type="button">Наші сертифікати</button>
@@ -303,31 +345,64 @@
         </section>
 
     </main>
-    <footer class="footer container">
+    <footer class="footer">
+        <div class="footer-items">
+            <div>
+                <a href="#"><img class="footer-logo" src="./img/card-bg.png" alt="footer-logo"></a>
+            </div>
 
+            <div class="footer-addres">
+                <ul>
+                    <li><a class="address-link" href="tel:+380992725961"> +380 99 272 5961</a></li>
+                    <li><a class="address-link" href="mailto:17Ananasik@gmail.com">17Ananasik@gmail.com</a></li>
+                    <li><a class="address-link" href="https://maps.app.goo.gl/HKxRZzyBFMbsS7jv6" target="_blank">Україна
+                            Одеса вул Дмітрія
+                            Іванова,12.</a></li>
+                    <a class="address-link" href="#" target="blank"> Політика
+                        конфідейціності</a>
+                    <p class="address-link">&copy;2025 Дані захищенні</p>
+
+                </ul>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a class="link" href="#" target="_blank">Процедури</a></li>
+                    <li><a class="link" href="#" target="_blank">Про нас</a></li>
+                    <li><a class="link" href="#" target="_blank">Контакти</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <ul>
+                    <li><a class="link" href="#" target="_blank">Instagram</a></li>
+                    <li><a class="link" href="#" target="_blank">Telegram</a></li>
+                    <li><a class="link" href="#" target="_blank">Facebook</a></li>
+                </ul>
+            </div>
+
+        </div>
     </footer>
     <div class="backdrop is-hidden">
         <div class="modal-contact">
             <button class="modal-btn-close" type="button">
             </button>
             <h1>Введіть інформацію</h1>
-            <p>Заповніть форму щоб ми зв'язалися з Вами!</p>
+            <p>Заповніть щоб ми зв'язалися з Вами!</p>
             <form name="modal-form" autocomplete="off">
-                <div class="input-info">
+                <div class="modal-input-info">
                     <label class="form-label visually-hidden" for="user-name">Ім'я</label>
-                    <input class="form-input" type="text" name="user-name" id="user-name" placeholder="Ім'я" required
-                        minlength="2">
+                    <input class="modal-form-input" type="text" name="user-name" id="user-name" placeholder="Ім'я"
+                        required minlength="2">
                 </div>
 
-                <div class="input-info">
+                <div class="modal-input-info">
                     <label class="form-label visually-hidden" for="user-tel">Телефон</label>
-                    <input class="form-input" type="tel" name="user-tel" id="user-tel" placeholder="Телефон" required
-                        maxlength="13" pattern="^\+380[0-9]{9}$">
+                    <input class="modal-form-input" type="tel" name="user-tel" id="user-tel" placeholder="Телефон"
+                        required maxlength="13" pattern="^\+380[0-9]{9}$">
                 </div>
 
-                <div class="input-info">
+                <div class="modal-input-info">
                     <label class="form-label visually-hidden" for="user-email">Електронна пошта</label>
-                    <input class="form-input" type="email" name="user-email" id="user-email"
+                    <input class="modal-form-input" type="email" name="user-email" id="user-email"
                         placeholder="Електронна пошта" required>
                 </div>
 
@@ -513,9 +588,6 @@
         </div>
     </div>
     <script src="./js-scripts/modal.js"></script>
-    <script src="./js-scripts/price-modal.js"></script>
-    <script src="./js-scripts/procedures.js"></script>
-    <script src="./js-scripts/diploma.js"></script>
 </body>
 
 </html>
