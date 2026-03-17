@@ -1275,7 +1275,7 @@ ul {
         width: 100%;
         height: auto;
         /* Высота под контент, как и было */
-        background: var(--color-primary-brand);
+        background: var(--color-primary-brand-light);
         z-index: 15;
         padding: 40px 20px;
 
@@ -1286,7 +1286,7 @@ ul {
         pointer-events: none;
 
         /* Плавность развертывания */
-        transition: clip-path 0.3s ease-in-out, visibility 0.3s;
+        transition: clip-path 0.3s ease-in-out, visibility 0.2s;
 
         display: flex;
         flex-direction: column;
@@ -1515,5 +1515,85 @@ ul {
         height: 32px;
         font-size: 14px;
         z-index: 0;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .menu-toggle {
+        display: flex;
+        /* Показываем кнопку на мобилках */
+        opacity: 1;
+    }
+
+    #header-navigation {
+        position: fixed;
+        top: 130px;
+        /* Твоя высота шапки */
+        left: 0;
+        width: 100%;
+        height: auto;
+        /* Высота под контент, как и было */
+        background: var(--color-primary-brand-light);
+        z-index: 15;
+        padding: 40px 20px;
+
+        /* --- КРУГОВАЯ АНИМАЦИЯ --- */
+        /* Начинаем из точки справа вверху (возле кнопки бургер) */
+        clip-path: circle(0% at 90% 0%);
+        visibility: hidden;
+        pointer-events: none;
+
+        /* Плавность развертывания */
+        transition: clip-path 0.3s ease-in-out, visibility 0.2s;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    #header-navigation.is-open {
+        visibility: visible;
+        pointer-events: auto;
+        /* Разворачиваем круг на 150%, чтобы он покрыл весь прямоугольник меню */
+        clip-path: circle(150% at 90% 0%);
+    }
+
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 20px;
+    }
+
+    .header-container {
+        padding: 16px 12px;
+    }
+
+    .header-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-primary-brand-light);
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        gap: 16px;
+    }
+
+    .header-items.is-open {
+        display: flex;
+    }
+
+    .header-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-item {
+        margin: 0;
+        font-weight: 400;
     }
 }
