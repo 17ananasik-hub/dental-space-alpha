@@ -256,22 +256,24 @@
 
                     <div class="contact">
                         <h2 class="form-title">Заповніть для запису</h2>
+                        <div class="input-name">
+                            <div class="input-info">
+                                <input class="form-input" type="text" placeholder="Ім'я" required minlength="2">
+                            </div>
 
-                        <div class="input-info">
-                            <input class="form-input" type="text" placeholder="Ім'я" required minlength="2">
+                            <div class="input-info">
+                                <input class="form-input" type="tel" placeholder="Телефон" pattern="^\+380[0-9]{9}$"
+                                    required>
+                            </div>
                         </div>
+                        <div class="input-email">
+                            <div class="input-info">
+                                <input class="form-input" type="email" placeholder="Електронна пошта" required>
+                            </div>
 
-                        <div class="input-info">
-                            <input class="form-input" type="tel" placeholder="Телефон" pattern="^\+380[0-9]{9}$"
-                                required>
-                        </div>
-
-                        <div class="input-info">
-                            <input class="form-input" type="email" placeholder="Електронна пошта" required>
-                        </div>
-
-                        <div class="input-info">
-                            <input class="form-input" type="text" placeholder="Коментар">
+                            <div class="input-info">
+                                <input class="form-input" type="text" placeholder="Коментар">
+                            </div>
                         </div>
 
                         <button class="contact-button" type="submit">
@@ -296,15 +298,14 @@
                 <source src="./img/team-video.mp4" type="video/mp4">
             </video>
             <div class="advantages-content">
-                <div class="advantages-card">
-                    <div class="advantages-text">
-                        <h1>DentalSpace - це вибір</h1>
-                        <p>Ми займаємось лікуванням понад 10 років,та постійно підвищуємо
-                            кваліфікації наших стоматологів,також ми постійно розширюємо наш асортимент послуг,
-                            та націленні тільки на найкращий результат про що свідчать вже 100+ задоволенних клієнтів!
-                        </p>
-                    </div>
-                </div>
+                <article class="advantages-card">
+                    <h2>DentalSpace - це вибір</h2>
+                    <p>Ми займаємось лікуванням понад 10 років,та постійно підвищуємо
+                        кваліфікації наших стоматологів,також ми постійно розширюємо наш асортимент послуг,
+                        та націленні тільки на найкращий результат про що свідчать вже 100+ задоволенних клієнтів!
+                    </p>
+
+                </article>
 
             </div>
             <div class="advantages-button">
@@ -313,42 +314,70 @@
         </section>
 
         <section class="results-section">
-            <div class="result-title">
-                <h1>Наші роботи</h1>
-            </div>
-            <div class="results-gallery">
-                <div class="results-card">
-                    <div class="results-photo results-photo--before">
-                        <img src="./img/results-1.jpg" alt="before">
-                    </div>
-                    <div class="results-photo results-photo--after">
-                        <img src="./img/results-2.jpg" alt="after">
+            <h2 class="result-title">Наші роботи</h2>
+            <div class="carousel-container" id="results-carousel">
+                <button class="carousel-btn carousel-btn-left" aria-label="Previous">‹</button>
+                <div class="carousel-viewport">
+                    <div class="carousel-track results-gallery">
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/results-1.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/results-2.jpg" alt="after">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="results-card">
-                    <div class="results-photo results-photo--before">
-                        <img src="./img/results-1.jpg" alt="before">
-                    </div>
-                    <div class="results-photo results-photo--after">
-                        <img src="./img/results-2.jpg" alt="after">
-                    </div>
-                </div>
-                <div class="results-card">
-                    <div class="results-photo results-photo--before">
-                        <img src="./img/results-1.jpg" alt="before">
-                    </div>
-                    <div class="results-photo results-photo--after">
-                        <img src="./img/results-2.jpg" alt="after">
-                    </div>
-                </div>
+
+                <button class="carousel-btn carousel-btn-right" aria-label="Next">›</button>
             </div>
         </section>
-
     </main>
     <footer class="footer">
         <div class="footer-items">
-            <div>
-                <a href="#"><img class="footer-logo" src="./img/card-bg.png" alt="footer-logo"></a>
+            <div class="footer-logo-wrapper">
+                <a href="#"><img class="footer-logo" src="./img/logo.png" alt="footer-logo"></a>
             </div>
 
             <div class="footer-addres">

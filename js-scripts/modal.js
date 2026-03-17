@@ -1,458 +1,140 @@
-const modal = document.querySelector('.backdrop');
-const modalBtnOpen = document.querySelectorAll('.modal-btn-open');
-const modalBtnClose = document.querySelector('.modal-btn-close');
 
-const toggleModal = () => modal.classList.toggle('is-hidden');
+// --- 1. МОДАЛЬНЫЕ ОКНА ---
+function setupModal(backdropSelector, openSelector, closeSelector) {
+    const backdrop = document.querySelector(backdropSelector);
+    const openBtns = document.querySelectorAll(openSelector);
+    const closeBtn = document.querySelector(closeSelector);
 
-// Открытие модалки через все кнопки
-modalBtnOpen.forEach(btn => {
-    btn.addEventListener('click', toggleModal);
-});
+    if (!backdrop || openBtns.length === 0) return;
 
-// Закрытие через кнопку закрытия
-modalBtnClose.addEventListener('click', toggleModal);
+    const toggle = () => backdrop.classList.toggle('is-hidden');
 
-// Закрытие при клике на backdrop
-modal.addEventListener('click', (event) => {
-    // если кликнули на сам backdrop, а не на контент
-    if (event.target === modal) {
-        toggleModal();
-    }
-});
-// price-modal.js
-const priceModal = document.querySelector('.price-backdrop');
-const priceBtnOpen = document.querySelector('.modal-price-btn-open');
-const priceBtnClose = document.querySelector('.modal-btn-close');
+    openBtns.forEach(btn => btn.addEventListener('click', toggle));
+    if (closeBtn) closeBtn.addEventListener('click', toggle);
 
-const togglePriceModal = () => priceModal.classList.toggle('is-hidden');
+    backdrop.addEventListener('click', (e) => {
+        if (e.target === backdrop) toggle();
+    });
+}
 
-// Открытие и закрытие через кнопки
-priceBtnOpen.addEventListener('click', togglePriceModal);
-priceBtnClose.addEventListener('click', togglePriceModal);
+setupModal('.backdrop', '.modal-btn-open', '.modal-btn-close');
+setupModal('.price-backdrop', '.modal-price-btn-open', '.price-backdrop .modal-btn-close');
+setupModal('.procedures-backdrop', '.modal-procedures-btn-open', '.modal-procedures-btn-close');
+setupModal('.diploma-backdrop', '.modal-diploma-btn-open', '.modal-diploma-btn-close');
 
-// Закрытие при клике на backdrop
-priceModal.addEventListener('click', (event) => {
-    // Если кликнули именно на backdrop, а не на содержимое модалки
-    if (event.target === priceModal) {
-        togglePriceModal();
-    }
-});
 
-//procedures-modal//
-
-const proceduresModal = document.querySelector('.procedures-backdrop');
-const proceduresBtnOpen = document.querySelectorAll('.modal-procedures-btn-open');
-const proceduresBtnClose = document.querySelector('.modal-procedures-btn-close');
-
-const toggleProceduresModal = () => {
-    proceduresModal.classList.toggle('is-hidden');
-};
-
-// Открытие с двух кнопок
-proceduresBtnOpen.forEach(btn => {
-    btn.addEventListener('click', toggleProceduresModal);
-});
-
-// Закрытие через кнопку
-proceduresBtnClose.addEventListener('click', toggleProceduresModal);
-
-// Закрытие по клику на backdrop
-proceduresModal.addEventListener('click', (event) => {
-    if (event.target === proceduresModal) {
-        toggleProceduresModal();
-    }
-});
-
-// diploma-modal.js
-const diplomaModal = document.querySelector('.diploma-backdrop');
-const diplomaBtnOpen = document.querySelector('.modal-diploma-btn-open');
-const diplomaBtnClose = document.querySelector('.modal-diploma-btn-close');
-
-const toggleDiplomaModal = () => diplomaModal.classList.toggle('is-hidden');
-
-// Открытие и закрытие через кнопки
-diplomaBtnOpen.addEventListener('click', toggleDiplomaModal);
-diplomaBtnClose.addEventListener('click', toggleDiplomaModal);
-
-// Закрытие при клике на backdrop
-diplomaModal.addEventListener('click', (event) => {
-    // Если кликнули именно на backdrop, а не на содержимое модалки
-    if (event.target === diplomaModal) {
-        toggleDiplomaModal();
-    }
-});
-
-// carousel //
-/**
- * Динамическая инициализация карусели для секции .procedures
- * Без изменения HTML и CSS файлов.
- */class ProceduresCarousel {
+// --- 2. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ С ЖИВЫМ СВАЙПОМ ---
+class UniversalCarousel {
     constructor(container) {
         this.container = container;
-        this.viewport = container.querySelector('.carousel-viewport');
         this.track = container.querySelector('.carousel-track');
-        this.cards = Array.from(this.track.querySelectorAll('.procedure-card'));
-        this.btnLeft = container.querySelector('.carousel-btn-left');
-        this.btnRight = container.querySelector('.carousel-btn-right');
+        this.btnL = container.querySelector('.carousel-btn-left');
+        this.btnR = container.querySelector('.carousel-btn-right');
+        this.cards = this.track.children;
+        this.index = 0;
 
-        this.currentIndex = 0;
-        this.cardsToShow = 3;
-        this.isTransitioning = false;
+        if (this.cards.length > 0) this.init();
+    }
 
-        // Touch handling
-        this.touchStartX = 0;
-        this.touchEndX = 0;
-        this.isDragging = false;
-        this.dragOffset = 0;
+    getStep() {
+        const card = this.cards[0];
+        const style = getComputedStyle(card);
+        return card.offsetWidth + parseFloat(style.marginRight || 0) + parseFloat(style.marginLeft || 0);
+    }
 
-        this.init();
+    move() {
+        const step = this.getStep();
+        const visible = Math.round(this.container.offsetWidth / step);
+        const maxIndex = Math.max(0, this.cards.length - visible);
+
+        this.index = Math.max(0, Math.min(this.index, maxIndex));
+
+        this.track.style.transition = 'transform 0.4s ease-out';
+        this.track.style.transform = `translateX(${-this.index * step}px)`;
+
+        if (this.btnL) this.btnL.style.opacity = this.index === 0 ? '0.3' : '1';
+        if (this.btnR) this.btnR.style.opacity = this.index >= maxIndex ? '0.3' : '1';
     }
 
     init() {
-        this.cloneCards();
-        this.updateCardsToShow();
-        this.bindEvents();
-        this.setPosition(false);
-    }
+        this.btnR?.addEventListener('click', () => { this.index++; this.move(); });
+        this.btnL?.addEventListener('click', () => { this.index--; this.move(); });
 
-    cloneCards() {
-        // Clone cards for infinite loop
-        const cardCount = this.cards.length;
+        let startX = 0;
+        let currentTranslate = 0;
 
-        // Clone last cards to beginning
-        for (let i = cardCount - 1; i >= Math.max(0, cardCount - 3); i--) {
-            const clone = this.cards[i].cloneNode(true);
-            clone.classList.add('carousel-clone');
-            this.track.insertBefore(clone, this.track.firstChild);
-        }
-
-        // Clone first cards to end
-        for (let i = 0; i < Math.min(3, cardCount); i++) {
-            const clone = this.cards[i].cloneNode(true);
-            clone.classList.add('carousel-clone');
-            this.track.appendChild(clone);
-        }
-
-        this.allCards = Array.from(this.track.querySelectorAll('.procedure-card'));
-        this.cloneCount = Math.min(3, cardCount);
-        this.currentIndex = this.cloneCount;
-    }
-
-    updateCardsToShow() {
-        const width = window.innerWidth;
-        if (width <= 600) {
-            this.cardsToShow = 1;
-        } else if (width <= 900) {
-            this.cardsToShow = 2;
-        } else {
-            this.cardsToShow = 3;
-        }
-    }
-
-    getCardWidth() {
-        const card = this.allCards[0];
-        const style = getComputedStyle(card);
-        const marginLeft = parseFloat(style.marginLeft);
-        const marginRight = parseFloat(style.marginRight);
-        return card.offsetWidth + marginLeft + marginRight;
-    }
-
-    setPosition(animate = true) {
-        const cardWidth = this.getCardWidth();
-        const offset = -this.currentIndex * cardWidth;
-
-        if (animate) {
-            this.track.style.transition = 'transform 0.4s ease-out';
-        } else {
+        // Касание пальцем
+        this.container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            currentTranslate = -this.index * this.getStep();
             this.track.style.transition = 'none';
-        }
+        }, { passive: true });
 
-        this.track.style.transform = `translateX(${offset}px)`;
-    }
+        // Движение пальца (карточки едут вслед)
+        this.container.addEventListener('touchmove', (e) => {
+            const diff = e.touches[0].clientX - startX;
+            this.track.style.transform = `translateX(${currentTranslate + diff}px)`;
+        }, { passive: true });
 
-    next() {
-        if (this.isTransitioning) return;
-        this.isTransitioning = true;
-        this.currentIndex++;
-        this.setPosition(true);
-    }
+        // Конец касания
+        this.container.addEventListener('touchend', (e) => {
+            const diff = e.changedTouches[0].clientX - startX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? this.index-- : this.index++;
+            }
+            this.move();
+        });
 
-    prev() {
-        if (this.isTransitioning) return;
-        this.isTransitioning = true;
-        this.currentIndex--;
-        this.setPosition(true);
-    }
-
-    handleTransitionEnd() {
-        this.isTransitioning = false;
-
-        const totalOriginal = this.cards.length;
-        const maxIndex = this.cloneCount + totalOriginal - 1;
-        const minIndex = this.cloneCount;
-
-        // Loop back if we've gone past the clones
-        if (this.currentIndex > maxIndex) {
-            this.currentIndex = minIndex + (this.currentIndex - maxIndex - 1);
-            this.setPosition(false);
-        } else if (this.currentIndex < minIndex) {
-            this.currentIndex = maxIndex - (minIndex - this.currentIndex - 1);
-            this.setPosition(false);
-        }
-    }
-
-    bindEvents() {
-        // Button navigation
-        this.btnRight.addEventListener('click', () => this.next());
-        this.btnLeft.addEventListener('click', () => this.prev());
-
-        // Transition end
-        this.track.addEventListener('transitionend', () => this.handleTransitionEnd());
-
-        // Resize handling
-        let resizeTimer;
         window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                this.updateCardsToShow();
-                this.setPosition(false);
-            }, 100);
+            this.track.style.transition = 'none';
+            this.move();
         });
 
-        // Touch events for mobile swipe
-        this.viewport.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
-        this.viewport.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-        this.viewport.addEventListener('touchend', (e) => this.handleTouchEnd(e));
-
-        // Mouse drag for desktop
-        this.viewport.addEventListener('mousedown', (e) => this.handleDragStart(e));
-        this.viewport.addEventListener('mousemove', (e) => this.handleDragMove(e));
-        this.viewport.addEventListener('mouseup', (e) => this.handleDragEnd(e));
-        this.viewport.addEventListener('mouseleave', (e) => this.handleDragEnd(e));
-
-        // Keyboard navigation
-        this.container.setAttribute('tabindex', '0');
-        this.container.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') this.prev();
-            if (e.key === 'ArrowRight') this.next();
-        });
-    }
-
-    handleTouchStart(e) {
-        if (this.isTransitioning) return;
-        this.touchStartX = e.touches[0].clientX;
-        this.isDragging = true;
-        this.track.style.transition = 'none';
-    }
-
-    handleTouchMove(e) {
-        if (!this.isDragging) return;
-
-        const currentX = e.touches[0].clientX;
-        this.dragOffset = currentX - this.touchStartX;
-
-        const cardWidth = this.getCardWidth();
-        const baseOffset = -this.currentIndex * cardWidth;
-        this.track.style.transform = `translateX(${baseOffset + this.dragOffset}px)`;
-
-        // Prevent vertical scroll when swiping horizontally
-        if (Math.abs(this.dragOffset) > 10) {
-            e.preventDefault();
-        }
-    }
-
-    handleTouchEnd() {
-        if (!this.isDragging) return;
-        this.isDragging = false;
-
-        const threshold = this.getCardWidth() * 0.25;
-
-        if (this.dragOffset > threshold) {
-            this.prev();
-        } else if (this.dragOffset < -threshold) {
-            this.next();
-        } else {
-            this.setPosition(true);
-        }
-
-        this.dragOffset = 0;
-    }
-
-    handleDragStart(e) {
-        if (this.isTransitioning) return;
-        e.preventDefault();
-        this.touchStartX = e.clientX;
-        this.isDragging = true;
-        this.track.style.transition = 'none';
-        this.viewport.style.cursor = 'grabbing';
-    }
-
-    handleDragMove(e) {
-        if (!this.isDragging) return;
-
-        const currentX = e.clientX;
-        this.dragOffset = currentX - this.touchStartX;
-
-        const cardWidth = this.getCardWidth();
-        const baseOffset = -this.currentIndex * cardWidth;
-        this.track.style.transform = `translateX(${baseOffset + this.dragOffset}px)`;
-    }
-
-    handleDragEnd() {
-        if (!this.isDragging) return;
-        this.isDragging = false;
-        this.viewport.style.cursor = '';
-
-        const threshold = this.getCardWidth() * 0.25;
-
-        if (this.dragOffset > threshold) {
-            this.prev();
-        } else if (this.dragOffset < -threshold) {
-            this.next();
-        } else {
-            this.setPosition(true);
-        }
-
-        this.dragOffset = 0;
+        this.move();
     }
 }
 
-// Initialize
+// --- 3. ЗАПУСК ПРИ ЗАГРУЗКЕ ---
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.procedures .carousel-container').forEach(container => {
-        new ProceduresCarousel(container);
+    document.querySelectorAll('.carousel-container').forEach(container => {
+        new UniversalCarousel(container);
     });
 });
 
-/* carousel-dentist */
-class DentistCarousel {
+// section animations //
+const sections = document.querySelectorAll('.workflow, .advantages-section');
 
-    constructor(container) {
-
-        this.container = container
-        this.viewport = container.querySelector('.carousel-viewport')
-        this.track = container.querySelector('.carousel-track')
-        this.cards = Array.from(container.querySelectorAll('.card'))
-
-        this.btnLeft = container.querySelector('.carousel-btn-left')
-        this.btnRight = container.querySelector('.carousel-btn-right')
-
-        this.index = 0
-        this.isMoving = false
-
-        this.init()
-
-    }
-
-    init() {
-
-        this.cloneCards()
-        this.bindEvents()
-        this.setPosition(false)
-
-    }
-
-    cloneCards() {
-
-        const count = this.cards.length
-        if (count === 0) return
-
-        for (let i = count - 1; i >= count - 3; i--) {
-            const clone = this.cards[i].cloneNode(true)
-            clone.classList.add('clone')
-            this.track.prepend(clone)
-        }
-
-        for (let i = 0; i < 3; i++) {
-            const clone = this.cards[i].cloneNode(true)
-            clone.classList.add('clone')
-            this.track.append(clone)
-        }
-
-        this.allCards = Array.from(this.track.querySelectorAll('.card'))
-        this.index = 3
-
-    }
-
-    getCardWidth() {
-
-        const card = this.allCards[0]
-        const gap = parseInt(getComputedStyle(this.track).gap) || 0
-
-        return card.offsetWidth + gap
-
-    }
-
-    setPosition(anim = true) {
-
-        const offset = -(this.index * this.getCardWidth())
-
-        this.track.style.transition = anim ? "transform .4s ease" : "none"
-        this.track.style.transform = `translateX(${offset}px)`
-
-    }
-
-    next() {
-
-        if (this.isMoving) return
-        this.isMoving = true
-
-        this.index++
-        this.setPosition(true)
-
-    }
-
-    prev() {
-
-        if (this.isMoving) return
-        this.isMoving = true
-
-        this.index--
-        this.setPosition(true)
-
-    }
-
-    transitionEnd() {
-
-        this.isMoving = false
-
-        const original = this.cards.length
-        const max = original + 2
-
-        if (this.index > max) {
-            this.index = 3
-            this.setPosition(false)
-        }
-
-        if (this.index < 3) {
-            this.index = original + 2
-            this.setPosition(false)
-        }
-
-    }
-
-    bindEvents() {
-
-        this.btnRight.addEventListener('click', () => this.next())
-        this.btnLeft.addEventListener('click', () => this.prev())
-
-        this.track.addEventListener('transitionend', () => this.transitionEnd())
-
-    }
-
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    document.querySelectorAll('.carousel-section .carousel-container').forEach(el => {
-        new DentistCarousel(el)
-    })
-
-})
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.header-items');
-
-toggle.addEventListener('click', () => {
-    menu.classList.toggle('is-open');
-    toggle.classList.toggle('open'); // можно анимировать бургер
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        entry.target.classList.toggle('show', entry.isIntersecting);
+    });
+}, {
+    threshold: 0.4
 });
+
+sections.forEach(section => observer.observe(section));
+
+// burger //
+
+
+// --- 4. МОБИЛЬНОЕ МЕНЮ ---
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const headerNavigation = document.getElementById('header-navigation');
+const menuLinks = document.querySelectorAll('.header-menu .link');
+
+if (mobileMenuBtn && headerNavigation) {
+    const toggleMenu = () => {
+        mobileMenuBtn.classList.toggle('is-open'); // Для анимации иконок (крестика)
+        headerNavigation.classList.toggle('is-open'); // Для открытия самого меню
+        document.body.classList.toggle('no-scroll'); // Чтобы сайт не крутился под меню
+    };
+
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+
+    // Закрываем меню при клике на любую ссылку
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (headerNavigation.classList.contains('is-open')) toggleMenu();
+        });
+    });
+}
