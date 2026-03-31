@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 const TOKEN = '8657834343:AAGgJZNjaFprdfn1XR5WX0ea19TAgR5rOO8';
-const CHAT_ID = '472254072';
+const CHAT_ID = ' -5223168359';
 
 app.post('/send', async (req, res) => {
     try {
