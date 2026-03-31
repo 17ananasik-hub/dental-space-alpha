@@ -34,8 +34,8 @@
                     <li class="header-item"><a class="link" href="#contacts-section" target="blank">Контакти</a></li>
                 </ul>
                 <div class="buttons">
-                    <button class="button modal-price-btn-open">Прайс</button>
-                    <button class="button modal-btn-open">Запис</button>
+                    <button class="button" data-open="#modal-price">Прайс</button>
+                    <button class="button" data-open="#modal-contact">Открыть форму</button>
                 </div>
             </div>
         </div>
@@ -46,12 +46,11 @@
                 <h1>DentalSpace</h1>
                 <p><span><a class="link" href="#contacts-section" target="blank">вул.Європейська 44б</a></span>
                 </p>
-                <button class="button hero-button modal-btn-open">Запис</button>
-
+                <button class="button hero-button " data-open="#modal-contact">Открыть форму</button>
             </div>
         </section>
         <section class="procedures" id="procedures-section">
-
+            <h2 class="procedures-title">Процедури</h2>
             <div class="procedures-list">
                 <div class="carousel-container">
                     <button class="carousel-btn carousel-btn-left" aria-label="Previous">&#10094;</button>
@@ -63,8 +62,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -73,8 +72,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-2.jpg" alt="procedures-2">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -83,8 +82,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -93,8 +92,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
                                     <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
                                 </div>
 
                             </article>
@@ -103,8 +101,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
                                     <h3 class="procedure-card-title">Дайте деняк</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -113,8 +111,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
                                     <h3 class="procedure-card-title">Дай краба</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -123,8 +121,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
                                     <h3 class="procedure-card-title">Попиздіти</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -133,8 +131,8 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
                                     <h3 class="procedure-card-title">Фоткаю лоха</h3>
-                                    <button
-                                        class="button procedure-card-button modal-procedures-btn-open">Детальніше</button>
+                                    <button class="button" data-open="#modal-procedures">Процедуры</button>
+
                                 </div>
 
                             </article>
@@ -255,24 +253,26 @@
                 <div class="form-card">
 
                     <div class="contact">
-                        <h2 class="form-title">Заповніть для запису</h2>
+                        <h2 class="form-title">Запис</h2>
                         <div class="input-name">
                             <div class="input-info">
-                                <input class="form-input" type="text" placeholder="Ім'я" required minlength="2">
+                                <input name="name" class="form-input" type="text" placeholder="Ім'я" required
+                                    minlength="2">
                             </div>
 
                             <div class="input-info">
-                                <input class="form-input" type="tel" placeholder="Телефон" pattern="^\+380[0-9]{9}$"
-                                    required>
+                                <input name="phone" class="form-input" type="tel" placeholder="Телефон"
+                                    pattern="^\+380[0-9]{9}$" required>
                             </div>
                         </div>
                         <div class="input-email">
                             <div class="input-info">
-                                <input class="form-input" type="email" placeholder="Електронна пошта" required>
+                                <input name="email" class="form-input" type="email" placeholder="Електронна пошта"
+                                    required>
                             </div>
 
                             <div class="input-info">
-                                <input class="form-input" type="text" placeholder="Коментар">
+                                <input name="comment" class="form-input" type="text" placeholder="Коментар">
                             </div>
                         </div>
 
@@ -309,7 +309,7 @@
 
             </div>
             <div class="advantages-button">
-                <button class="button modal-diploma-btn-open " type="button">Наші сертифікати</button>
+                <button class="button" data-open="#modal-diploma">Дипломы</button>
             </div>
         </section>
 
@@ -410,213 +410,68 @@
 
         </div>
     </footer>
-    <div class="backdrop is-hidden">
-        <div class="modal-contact">
-            <button class="modal-btn-close" type="button">
-            </button>
-            <h1>Введіть інформацію</h1>
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button class="modal-close-btn" data-close>&times;</button>
+
+            <div data-modal-content></div>
+
+        </div>
+    </div>
+    <div id="modal-contact" class="modal-template is-hidden">
+        <div class="modal-input-content">
+            <h2>Введіть інформацію</h2>
             <p>Заповніть щоб ми зв'язалися з Вами!</p>
-            <form name="modal-form" autocomplete="off">
+
+            <form name="modal-form" id="modal-form" autocomplete="off">
                 <div class="modal-input-info">
-                    <label class="form-label visually-hidden" for="user-name">Ім'я</label>
-                    <input class="modal-form-input" type="text" name="user-name" id="user-name" placeholder="Ім'я"
-                        required minlength="2">
+                    <input class="modal-input" type="text" name="name" placeholder="Ім'я" required minlength="2">
                 </div>
 
                 <div class="modal-input-info">
-                    <label class="form-label visually-hidden" for="user-tel">Телефон</label>
-                    <input class="modal-form-input" type="tel" name="user-tel" id="user-tel" placeholder="Телефон"
-                        required maxlength="13" pattern="^\+380[0-9]{9}$">
+                    <input class="modal-input" type="tel" name="phone" placeholder="Телефон" required
+                        pattern="^\+380[0-9]{9}$">
                 </div>
 
                 <div class="modal-input-info">
-                    <label class="form-label visually-hidden" for="user-email">Електронна пошта</label>
-                    <input class="modal-form-input" type="email" name="user-email" id="user-email"
-                        placeholder="Електронна пошта" required>
+                    <input class="modal-input" type="email" name="email" placeholder="Електронна пошта" required>
                 </div>
 
-                <div class="modal-button"><button class="button" type="submit">Замовити дзвінок</button>
-                </div>
+                <button class="modal-button button" type="submit">Замовити дзвінок</button>
             </form>
             <p class="modal-polit">Натискаючи кнопку я погоджуюсь з <a class="address-link" href="#">політикою
                     конфідеційності</a></p>
+        </div>
 
+    </div>
+    <div id="modal-price" class="modal-template is-hidden">
+        <h2>Прайс</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Профілактика</h3>
+                <p>Опис...</p>
+                <strong>120$</strong>
+            </div>
         </div>
     </div>
-    <div class="price-backdrop is-hidden">
-        <div class="modal-price">
-            <button class="modal-price-btn-close" type="button">
-            </button>
-            <h1>Прайс на послуги</h1>
-            <ul class="price-list">
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="price-card">
-                        <h1>Профілактика</h1>
-                        <p>В ціну входить:</p>
-                        <p>Бесіда із лікарем
-                            Планування лікування
-                            Запис на прийом</p>
-                        <h2>120$</h2>
-                    </div>
-                </li>
-            </ul>
+    <div id="modal-procedures" class="modal-template is-hidden">
+        <h2>Прайс</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Профілактика</h3>
+                <p>Опис...</p>
+                <strong>120$</strong>
+            </div>
         </div>
     </div>
-    <div class="procedures-backdrop is-hidden">
-        <div class="modal-procedures">
-            <button class="modal-procedures-btn-close" type="button">
-            </button>
-            <ul>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-                <li>
-                    <div class="procedures-card">
-                        <h1>
-                            Чистка каналів
-                        </h1>
-                        <p>Ми чистимо вам канали сучачнішим обладнанням</p>
-                        <h2>100$</h2>
-                    </div>
-                </li>
-            </ul>
+    <div id="modal-diploma" class="modal-template is-hidden">
+        <h2>Дипломи</h2>
+        <div class="grid">
+            <img src="./img/diploma.jpg">
         </div>
     </div>
-    <div class="diploma-backdrop is-hidden">
-        <div class="modal-diploma">
-            <button class="modal-diploma-btn-close" type="button">
-            </button>
-            <ul>
-                <li>
-                    <div class="diploma-card">
-                        <img src="./img/diploma.jpg" alt="diploma">
-                    </div>
-                </li>
-                <li>
-                    <div class="diploma-card">
-                        <img src="./img/diploma.jpg" alt="diploma">
-                    </div>
-                </li>
-                <li>
-                    <div class="diploma-card">
-                        <img src="./img/diploma.jpg" alt="diploma">
-                    </div>
-                </li>
-                <li>
-                    <div class="diploma-card">
-                        <img src="./img/diploma.jpg" alt="diploma">
-                    </div>
-                </li>
-                <li>
-                    <div class="diploma-card">
-                        <img src="./img/diploma.jpg" alt="diploma">
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script src="./js-scripts/modal.js"></script>
+    <script src="./modal/modal.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
