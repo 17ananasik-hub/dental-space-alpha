@@ -1,12 +1,11 @@
-// Переменная-флаг, чтобы избежать двойной отправки
 let isSubmitting = false;
 
 document.addEventListener('submit', async (e) => {
     const form = e.target.closest('form');
-    if (!form || isSubmitting) return; // Если уже отправляем — выходим
+    if (!form || isSubmitting) return;
 
     e.preventDefault();
-    isSubmitting = true; // Блокируем повторный вход
+    isSubmitting = true;
 
     const formData = {
         name: form.querySelector('[name="name"]')?.value || '',
@@ -16,7 +15,8 @@ document.addEventListener('submit', async (e) => {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/send', {
+        // Теперь запрос идет на относительный путь Vercel
+        const response = await fetch('/api/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
@@ -25,17 +25,15 @@ document.addEventListener('submit', async (e) => {
         if (response.ok) {
             alert('✅ Заявка успішно відправлена!');
             form.reset();
-
-            // Скрываем модалку
             const backdrop = document.querySelector('[data-modal]');
             if (backdrop) backdrop.classList.add('is-hidden');
+        } else {
+            alert('❌ Ошибка при отправке. Попробуйте позже.');
         }
     } catch (error) {
         console.error('Ошибка:', error);
+        alert('❌ Не удалось связаться с сервером.');
     } finally {
-        // Разблокируем отправку через секунду (чтобы точно не было дублей)
-        setTimeout(() => {
-            isSubmitting = false;
-        }, 1000);
+        setTimeout(() => { isSubmitting = false; }, 1000);
     }
 });
