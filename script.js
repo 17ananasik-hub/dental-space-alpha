@@ -6,6 +6,7 @@ document.addEventListener('submit', async (e) => {
 
     e.preventDefault();
     isSubmitting = true;
+    console.log("🚀 Форма отправляется...");
 
     const formData = {
         name: form.querySelector('[name="name"]')?.value || '',
@@ -15,25 +16,24 @@ document.addEventListener('submit', async (e) => {
     };
 
     try {
-        // Теперь запрос идет на относительный путь Vercel
         const response = await fetch('/api/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (response.ok && result.ok) {
             alert('✅ Заявка успішно відправлена!');
             form.reset();
-            const backdrop = document.querySelector('[data-modal]');
-            if (backdrop) backdrop.classList.add('is-hidden');
         } else {
-            alert('❌ Ошибка при отправке. Попробуйте позже.');
+            alert('❌ Ошибка на стороне сервера.');
         }
     } catch (error) {
         console.error('Ошибка:', error);
-        alert('❌ Не удалось связаться с сервером.');
+        alert('❌ Не удалось отправить форму.');
     } finally {
-        setTimeout(() => { isSubmitting = false; }, 1000);
+        isSubmitting = false;
     }
 });
