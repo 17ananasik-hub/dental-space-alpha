@@ -15,24 +15,69 @@ const onEscPress = (e) => {
         closeModal();
     }
 };
-
 document.addEventListener('click', (e) => {
     // ОТКРЫТЬ
-    if (e.target.dataset.open) {
-        const template = document.querySelector(e.target.dataset.open);
+    const btn = e.target.closest('[data-open]'); // Находим кнопку (даже если кликнули по тексту внутри)
+
+    if (btn) {
+        const template = document.querySelector(btn.dataset.open);
+        const anchorId = btn.getAttribute('data-anchor'); // Получаем ID якоря
 
         contentBox.innerHTML = template.innerHTML;
         backdrop.classList.remove('is-hidden');
 
-        document.body.style.overflow = 'hidden'; // Запрещаем скролл
-        window.addEventListener('keydown', onEscPress); // Слушаем Esc
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', onEscPress);
+
+        // ЯКОРЬ: выполняем скролл
+        if (anchorId) {
+            // Задержка 10мс дает браузеру время вставить HTML в contentBox
+            setTimeout(() => {
+                const targetElement = contentBox.querySelector(`#${anchorId}`);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 10);
+        }
     }
 
-    // ЗАКРЫТЬ (по кнопке или фону)
-    if (e.target.dataset.close || e.target === backdrop) {
+    // ЗАКРЫТЬ
+    if (e.target.closest('[data-close]') || e.target === backdrop) {
         closeModal();
     }
 });
+
+document.querySelectorAll('.button[data-anchor]').forEach(button => {
+    button.addEventListener('click', function () {
+        const modalId = this.getAttribute('data-open');
+        const anchorId = this.getAttribute('data-anchor');
+        const modal = document.querySelector(modalId);
+
+        if (modal) {
+            // 1. Код открытия вашей модалки (зависит от вашего плагина/скрипта)
+            modal.classList.add('is-open');
+
+            // 2. Находим целевой блок внутри модалки
+            const targetElement = modal.querySelector(`#${anchorId}`);
+
+            if (targetElement) {
+                // Небольшая задержка, чтобы модалка успела отрисоваться
+                setTimeout(() => {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // 3. Подсветка
+                    targetElement.classList.add('highlight');
+
+                    // Удаляем класс через 2 секунды, чтобы можно было подсветить снова
+                    setTimeout(() => {
+                        targetElement.classList.remove('highlight');
+                    }, 2000);
+                }, 300);
+            }
+        }
+    });
+});
+
 
 // --- 2. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ С ЖИВЫМ СВАЙПОМ ---
 class UniversalCarousel {

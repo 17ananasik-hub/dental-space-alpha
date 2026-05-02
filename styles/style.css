@@ -142,6 +142,7 @@ ul {
     padding: 14px 32px;
     margin: auto 12px;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -175,6 +176,7 @@ ul {
     padding: 0 56px;
     margin: 56px auto;
     background-color: var(--color-primary-brand-light);
+    z-index: 15;
 }
 
 .header-menu {
@@ -229,13 +231,17 @@ ul {
 }
 
 .hero-button {
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(4px);
-    -webkit-text-fill-color: var(--color-primary-light);
+    /* ГЛАВНЫЙ ЭФФЕКТ СТЕКЛА */
+    /* blur — размытие, saturate — делает цвета фона под стеклом сочнее */
+    backdrop-filter: blur(20px) saturate(180%) brightness(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(120%);
 
-    border: 1.5px solid transparent;
-    border-top-color: rgba(255, 255, 255, 0.5);
-    border-right-color: rgba(255, 255, 255, 0.5);
+    /* Цвет фона должен быть едва заметным, чтобы не перекрывать искажения */
+    background-color: rgba(255, 255, 255, 0.05);
+
+    /* Тонкая белая обводка по всему периметру для эффекта грани стекла */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    -webkit-text-fill-color: var(--color-primary-light);
 }
 
 .hero-button:hover {
@@ -403,7 +409,7 @@ ul {
 }
 
 /* карточка */
-.card {
+.dantist-card {
     flex: 0 0 calc((100% - 40px) / 3);
     position: relative;
     height: 480px;
@@ -416,13 +422,13 @@ ul {
 
 /* адаптив */
 @media (max-width:900px) {
-    .card {
+    .dantist-card {
         flex: 0 0 calc((100% - 20px) / 2);
     }
 }
 
 @media (max-width:600px) {
-    .card {
+    .dantist-card {
         flex: 0 0 100%;
     }
 }
@@ -452,9 +458,7 @@ ul {
 
 /* hover карточки */
 
-.card:hover {
-    box-shadow: 0 0 16px rgba(255, 255, 255, .5);
-}
+
 
 /* изображение */
 
@@ -476,21 +480,21 @@ ul {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 24px;
-    background: rgba(0, 0, 0, .6);
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     color: var(--color-primary-light);
-
     transform: translateY(100%);
     transition: transform .4s ease;
 }
 
 /* hover эффекты */
 
-.card:hover .imgBx {
+.dantist-card:hover .imgBx {
     transform: translateY(-60px);
 }
 
-.card:hover .content {
+.dantist-card:hover .content {
     transform: translateY(0);
 }
 
@@ -903,6 +907,11 @@ ul {
     display: none;
 }
 
+.modal-title {
+    display: flex;
+    justify-content: center;
+}
+
 .backdrop {
     position: fixed;
     top: 0;
@@ -918,7 +927,7 @@ ul {
     opacity: 1;
     visibility: visible;
     transition: 0.3s;
-    z-index: 10;
+    z-index: 16;
 }
 
 .backdrop.is-hidden {
@@ -935,15 +944,28 @@ ul {
     flex-direction: column;
     align-items: center;
 
-    max-width: 880px;
-    max-height: 880px;
+    max-width: 650px;
+    max-height: 650px;
     height: 100%;
     width: 100%;
     background: rgba(97, 97, 97, 0.4);
     backdrop-filter: blur(12px);
     border-radius: 32px;
     padding: 60px 20px 40px;
-    margin: 24px auto;
+    margin: 32px auto;
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal::-webkit-scrollbar {
+    width: 3px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-light);
+    border-radius: 10px;
 }
 
 .modal-close-btn {
@@ -1018,17 +1040,108 @@ ul {
 
 
 /* grid (для карточек) */
-.grid {
-    display: grid;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
+
 
 /* card */
 .card {
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    height: 200px;
+    padding: 20px;
+    margin: 8px;
+    background: transparent;
+    border-radius: 12px;
+    border: 1px solid var(--color-primary-light);
+    box-sizing: border-box;
+}
+
+/* Эффект для элемента, на который перешли по ссылке-якорю */
+.card:target {
+    animation: highlight-fade 4s;
+    outline: none;
+    /* Убираем дефолтный фокус браузера */
+}
+
+@keyframes highlight-fade {
+    0% {
+        background-color: rgba(255, 255, 255, 0.2);
+        /* Цвет вспышки */
+        box-shadow: 0 0 20px var(--color-primary-light);
+        border-color: var(--color-primary-light);
+        transform: scale(1.02);
+        /* Легкое увеличение для акцента */
+    }
+
+    100% {
+        background-color: transparent;
+        box-shadow: none;
+        transform: scale(1);
+    }
+}
+
+
+
+.price-list {
+    flex-grow: 1;
+    /* Список заберет всё свободное место в карточке */
+    overflow-y: auto;
+    /* Включает скролл, если услуг больше, чем на 200px */
+    margin-top: 10px;
+    padding-right: 5px;
+    /* Отступ для полосы прокрутки */
+}
+
+/* Настройка скроллбара, чтобы он был тонким и аккуратным */
+.price-list::-webkit-scrollbar {
+    width: 3px;
+}
+
+.price-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-light);
     border-radius: 10px;
-    background: #f5f5f5;
+}
+
+h4 {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+
+.price-item {
+    display: flex;
+    align-items: baseline;
+    /* Выравнивание по базовой линии текста */
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Название услуги */
+.service-name {
+    flex-shrink: 0;
+    /* Не сжимать название */
+    padding-right: 8px;
+}
+
+/* Точки между названием и ценой */
+.dots {
+    flex-grow: 1;
+    /* Занимает всё свободное место */
+    border-bottom: 2px dotted var(--color-primary-brand-light);
+    /* Создает эффект точек */
+    margin: 0 5px;
+    position: relative;
+    top: -4px;
+    /* Немного приподнимаем точки */
+}
+
+/* Цена */
+.service-price {
+    flex-shrink: 0;
+    /* Не сжимать цену */
+    font-weight: bold;
+    padding-left: 8px;
 }
 
 /* form */
@@ -1081,6 +1194,36 @@ ul {
     width: 100%;
     padding: 12px;
 }
+
+/*Diploma*/
+
+/* Контейнер для диплома */
+.diploma-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+/* Стили самого изображения */
+.diploma-container img {
+    /* Задаем четкие размеры */
+    width: 100%;
+    max-width: 450px;
+    /* Ограничиваем ширину */
+    height: auto;
+    /* Высота подстроится пропорционально */
+
+    /* Добавляем оформление */
+    border-radius: 8px;
+    border: 1px solid var(--color-primary-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* Чтобы картинка не искажалась */
+    object-fit: contain;
+}
+
 
 .menu-toggle {
     display: none;
@@ -1151,6 +1294,7 @@ ul {
 
     .header-container {
         padding: 16px 12px;
+        z-index: 100;
     }
 
     .header-items {
@@ -1326,7 +1470,7 @@ ul {
         grid-row: 3;
     }
 
-    .modal-contact {
+    .modal {
         height: 100%;
         width: 100%;
         max-height: 500px;
@@ -1336,10 +1480,28 @@ ul {
         align-content: center;
     }
 
-    .modal-contact,
-    h1 {
-        text-align: center;
+    .modal-button {
+        margin: 18px auto;
     }
+
+    .modal-close-btn {
+        top: 14px;
+        right: 14px;
+    }
+
+    .modal-close-btn::before,
+    .modal-close-btn::after {
+        width: 16px;
+    }
+
+    .modal h2 {
+        font-size: 26px;
+    }
+
+    .modal p {
+        font-size: 14px;
+    }
+
 }
 
 
@@ -1416,6 +1578,7 @@ ul {
         top: 0;
         z-index: 10;
         padding: 20px;
+        z-index: 100;
     }
 
     .header-container {
