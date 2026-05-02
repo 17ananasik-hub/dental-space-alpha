@@ -1578,7 +1578,7 @@ h4 {
         top: 0;
         z-index: 10;
         padding: 20px;
-        z-index: 100;
+        z-index: 10;
     }
 
     .header-container {
