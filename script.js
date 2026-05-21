@@ -6,7 +6,7 @@ document.addEventListener('submit', async (e) => {
 
     e.preventDefault();
     isSubmitting = true;
-    console.log("🚀 Форма отправляется...");
+    console.log("🚀 Форма відправляється...");
 
     const formData = {
         name: form.querySelector('[name="name"]')?.value || '',
@@ -28,11 +28,11 @@ document.addEventListener('submit', async (e) => {
             alert('✅ Заявка успішно відправлена!');
             form.reset();
         } else {
-            alert('❌ Ошибка на стороне сервера.');
+            alert('❌ Помилка на стороні сервера.');
         }
     } catch (error) {
         console.error('Ошибка:', error);
-        alert('❌ Не удалось отправить форму.');
+        alert('❌ Не вдалось відправити форму.');
     } finally {
         isSubmitting = false;
     }

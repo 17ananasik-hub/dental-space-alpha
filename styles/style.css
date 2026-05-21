@@ -1517,7 +1517,7 @@ h4 {
 /* Mobile: 1 card */
 @media (max-width: 600px) {
     .carousel-container {
-        padding: 8px 60px;
+        padding: 8px 14px;
     }
 
     @media (max-width: 600px) {
@@ -1527,10 +1527,7 @@ h4 {
     }
 
     .carousel-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 14px;
-        z-index: 0;
+        display: none;
     }
 }
 
