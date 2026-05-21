@@ -157,6 +157,8 @@ ul {
 }
 
 
+
+
 /*Header*/
 
 .header-container {
@@ -308,20 +310,75 @@ ul {
 }
 
 /* Navigation Buttons */
+/* Базовое состояние (Светлая тема) — только стрелка */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
+    width: auto;
+    /* Убираем фиксированную ширину круга */
+    height: auto;
+    /* Убираем фиксированную высоту круга */
+    padding: 10px;
+    /* Область клика, чтобы пользователю было легко попасть */
 
-    color: #fff;
-    font-size: 18px;
+    background: transparent !important;
+    /* Полностью убираем фон */
+    border: none !important;
+    border-radius: 0;
+    box-shadow: none !important;
+    /* Убираем тени круга */
+
+    font-size: 24px;
+    /* Делаем стрелку чуть крупнее, так как фона больше нет */
+    font-weight: 300;
+    /* Тонкая изящная стрелка выглядит дороже */
     cursor: pointer;
     z-index: 10;
-    transition: background 0.2s, opacity 0.2s;
+
+    /* Цвет стрелки на светлой теме */
+    color: var(--color-primary-brand) !important;
+
+    /* Плавная дорогая анимация цвета и движения */
+    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        opacity 0.2s ease;
+}
+
+/* Эффект ховера для светлой темы — стрелка становится чуть светлее */
+.carousel-btn:hover {
+    color: var(--color-primary-brand-light) !important;
+}
+
+/* Интерактивная микро-анимация: стрелки слегка расходятся в стороны при наведении */
+.carousel-btn-left:hover {
+    transform: translateY(-50%) translateX(-4px);
+    /* Левая стрелка уходит влево */
+}
+
+.carousel-btn-right:hover {
+    transform: translateY(-50%) translateX(4px);
+    /* Правая стрелка уходит вправо */
+}
+
+
+/* ======================================================= */
+/* АВТОМАТИЧЕСКАЯ ИНВЕРСИЯ СТРЕЛОК ДЛЯ ТЕМНОЙ ТЕМЫ */
+/* ======================================================= */
+
+/* Цвет стрелки на темной теме */
+[data-theme="dark"] .carousel-btn {
+    color: var(--color-primary-light) !important;
+}
+
+/* Ховер для темной темы — стрелка становится чисто белой */
+[data-theme="dark"] .carousel-btn:hover {
+    color: #ffffff !important;
+}
+
+/* Эффект при клике (для обеих тем) */
+.carousel-btn:active {
+    opacity: 0.5;
 }
 
 
@@ -1610,4 +1667,92 @@ h4 {
         margin: 0;
         font-weight: 400;
     }
+}
+
+:root {
+    /* Ваши базовые цвета (Светлая тема по умолчанию) */
+    --color-primary-brand: #1c1c1c;
+    --color-primary-light: #e5e5e5;
+    --color-primary-brand-light: #2d2d2d;
+
+    /* Динамические переменные, которые используются на сайте */
+    --bg-page: var(--color-primary-light);
+    --text-color: var(--color-primary-brand);
+    --bg-button: var(--color-primary-brand);
+    --bg-button-hover: var(--color-primary-brand-light);
+    --text-button: var(--color-primary-light);
+}
+
+/* Переменные для Темной темы (инвертируем цвета) */
+[data-theme="dark"] {
+    --bg-page: var(--color-primary-brand);
+    --text-color: var(--color-primary-light);
+    --bg-button: var(--color-primary-light);
+    --bg-button-hover: #ffffff;
+    --text-button: var(--color-primary-brand);
+}
+
+/* Глобальные плавные переходы для элементов сайта */
+body {
+    background-color: var(--bg-page);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Стили кнопки переключателя */
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    cursor: pointer;
+    background-color: var(--bg-button);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    /* Круглая премиальная форма */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 0.3s ease;
+}
+
+/* Дорогой ховер-эффект для кнопки */
+.theme-toggle:hover {
+    background-color: var(--bg-button-hover);
+    transform: scale(1.05);
+}
+
+/* Базовый стиль иконок внутри */
+.theme-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-button);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        opacity 0.3s ease;
+}
+
+/* Логика отображения иконок с анимацией вращения */
+/* По умолчанию (светлая тема): скрываем солнце, показываем луну */
+.theme-toggle .id-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+.theme-toggle .id-moon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+/* В темной теме: показываем солнце, скрываем луну */
+[data-theme="dark"] .theme-toggle .id-sun {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+[data-theme="dark"] .theme-toggle .id-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
 }

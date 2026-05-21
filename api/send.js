@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
             parse_mode: 'Markdown'
         });
 
-        console.log("✅ Сообщение успешно отправлено в Telegram!");
+        console.log("✅ Повідомлення відправленно!");
         return res.status(200).json({ ok: true });
 
     } catch (error) {

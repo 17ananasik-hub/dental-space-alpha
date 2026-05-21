@@ -37,6 +37,27 @@
                     <button class="button" data-open="#modal-price">Прайс</button>
                     <button class="button" data-open="#modal-contact">Записатись</button>
                 </div>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">
+                    <!-- Иконка Луны (показывается на светлой теме) -->
+                    <svg class="theme-icon id-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <!-- Иконка Солнца (показывается на темной теме) -->
+                    <svg class="theme-icon id-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+
             </div>
         </div>
     </header>
@@ -62,7 +83,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <a href="#procedure-1" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-1" class="button" data-open="#modal-price">Процедури</a>
 
                                 </div>
 
@@ -72,7 +93,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-2.jpg" alt="procedures-2">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <a href="#procedure-2" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-2" class="button" data-open="#modal-price">Процедури</a>
 
                                 </div>
 
@@ -82,7 +103,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
                                     <h3 class="procedure-card-title">Профілактика</h3>
-                                    <a href="#procedure-3" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-3" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -91,7 +112,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
                                     <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
-                                    <a href="#procedure-4" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-4" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -100,7 +121,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
                                     <h3 class="procedure-card-title">Дайте деняк</h3>
-                                    <a href="#procedure-5" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-5" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -109,7 +130,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
                                     <h3 class="procedure-card-title">Дай краба</h3>
-                                    <a href="#procedure-6" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-6" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -118,7 +139,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
                                     <h3 class="procedure-card-title">Попиздіти</h3>
-                                    <a href="#procedure-7" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-7" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -127,7 +148,7 @@
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
                                     <h3 class="procedure-card-title">Фоткаю лоха</h3>
-                                    <a href="#procedure-8" class="button" data-open="#modal-price">Процедуры</a>
+                                    <a href="#procedure-8" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
@@ -257,7 +278,7 @@
                             </div>
 
                             <div class="input-info">
-                                <input name="phone" class="form-input" type="tel" placeholder="Телефон"
+                                <input id="phone" name="phone" class="form-input" type="tel" placeholder="Телефон"
                                     pattern="^\+380[0-9]{9}$" required>
                             </div>
                         </div>
@@ -305,7 +326,7 @@
 
             </div>
             <div class="advantages-button">
-                <button class="button" data-open="#modal-diploma">Дипломы</button>
+                <button class="button" data-open="#modal-diploma">Сертифікати</button>
             </div>
         </section>
 

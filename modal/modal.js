@@ -194,3 +194,73 @@ if (mobileMenuBtn && headerNavigation) {
         });
     });
 }
+// Используем глобальное делегирование событий (работает для динамических модалок)
+const prefix = '+380';
+
+// 1. Обрабатываем фокус / клик на инпуте телефона
+document.addEventListener('focusin', (event) => {
+    const target = event.target;
+    if (target && target.matches('input[name="phone"]')) {
+        if (!target.value) {
+            target.value = prefix;
+        }
+    }
+});
+
+// 2. Обрабатываем потерю фокуса
+document.addEventListener('focusout', (event) => {
+    const target = event.target;
+    if (target && target.matches('input[name="phone"]')) {
+        if (target.value === prefix) {
+            target.value = '';
+        }
+    }
+});
+
+// 3. Контролируем ввод символов (валидация на лету)
+document.addEventListener('input', (event) => {
+    const target = event.target;
+    if (target && target.matches('input[name="phone"]')) {
+        // Запрещаем стирать префикс
+        if (!target.value.startsWith(prefix)) {
+            target.value = prefix;
+        }
+
+        // Оставляем только цифры после префикса
+        const digits = target.value.substring(prefix.length).replace(/\D/g, '');
+
+        // Ограничиваем длину префиксом + 9 цифр
+        target.value = prefix + digits.substring(0, 9);
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    if (!themeToggleBtn) return;
+
+    // Проверяем, сохранил ли пользователь тему ранее, или берем системную
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Определяем стартовую тему
+    const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+    // Устанавливаем тему при загрузке
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Обработчик клика по кнопке
+    themeToggleBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+});
