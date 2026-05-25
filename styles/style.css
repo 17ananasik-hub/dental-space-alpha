@@ -176,7 +176,8 @@ ul {
     z-index: 10;
     width: 100%;
     padding: 0 56px;
-    margin: 56px auto;
+    margin: 0px auto;
+    margin-bottom: 16px;
     background-color: var(--color-primary-brand-light);
     z-index: 15;
 }
@@ -873,7 +874,7 @@ ul {
 }
 
 .procedure-card {
-    flex: 0 0 calc(33.333% - 20px);
+    flex: 0 0 calc(33.333%);
     margin: 0 10px;
     box-sizing: border-box;
 }
@@ -1700,22 +1701,23 @@ body {
 }
 
 /* Стили кнопки переключателя */
+
+
 .theme-toggle {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
+    margin: auto;
+    width: 56px;
     height: 44px;
     padding: 0;
     cursor: pointer;
     background-color: var(--bg-button);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    /* Круглая премиальная форма */
+    border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-        transform 0.3s ease;
+    transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s ease;
 }
 
 /* Дорогой ховер-эффект для кнопки */

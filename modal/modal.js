@@ -77,78 +77,136 @@ document.querySelectorAll('.button[data-anchor]').forEach(button => {
         }
     });
 });
-
-
-// --- 2. УНИВЕРСАЛЬНАЯ КАРУСЕЛЬ С ЖИВЫМ СВАЙПОМ ---
+// --- 2. КИНЕТИЧЕСКАЯ КАРУСЕЛЬ С 3D-ЦЕНТРИРОВАНИЕМ (ИСПРАВЛЕННАЯ) ---
 class UniversalCarousel {
     constructor(container) {
+        if (!container) return;
         this.container = container;
         this.track = container.querySelector('.carousel-track');
         this.btnL = container.querySelector('.carousel-btn-left');
         this.btnR = container.querySelector('.carousel-btn-right');
-        this.cards = this.track.children;
+        this.cards = this.track ? this.track.children : [];
+
         this.index = 0;
+        this.startX = 0;
+        this.currentOffset = 0;
+        this.isDragging = false;
 
         if (this.cards.length > 0) this.init();
     }
 
-    getStep() {
-        const card = this.cards[0];
-        const style = getComputedStyle(card);
-        return card.offsetWidth + parseFloat(style.marginRight || 0) + parseFloat(style.marginLeft || 0);
+    // Точный расчет позиции для центрирования карточки
+    getCenterPosition(idx) {
+        const card = this.cards[idx];
+        if (!card) return 0;
+
+        const containerWidth = this.container.offsetWidth;
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.offsetWidth;
+
+        // Центрируем карточку математически относительно контейнера
+        return -(cardLeft - (containerWidth / 2) + (cardWidth / 2));
     }
 
-    move() {
-        const step = this.getStep();
-        const visible = Math.round(this.container.offsetWidth / step);
-        const maxIndex = Math.max(0, this.cards.length - visible);
+    move(smooth = true) {
+        if (this.cards.length === 0) return;
 
-        this.index = Math.max(0, Math.min(this.index, maxIndex));
+        this.index = Math.max(0, Math.min(this.index, this.cards.length - 1));
+        this.currentOffset = this.getCenterPosition(this.index);
 
-        this.track.style.transition = 'transform 0.4s ease-out';
-        this.track.style.transform = `translateX(${-this.index * step}px)`;
+        this.track.style.transition = smooth ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
+        this.track.style.transform = `translateX(${this.currentOffset}px)`;
 
-        if (this.btnL) this.btnL.style.opacity = this.index === 0 ? '0.3' : '1';
-        if (this.btnR) this.btnR.style.opacity = this.index >= maxIndex ? '0.3' : '1';
+        // Обновляем классы активности для 3D-эффекта
+        Array.from(this.cards).forEach((card, idx) => {
+            if (idx === this.index) {
+                card.classList.add('is-active');
+            } else {
+                card.classList.remove('is-active');
+            }
+        });
+
+        // Управление стрелками
+        if (this.btnL) this.btnL.style.opacity = this.index === 0 ? '0.2' : '1';
+        if (this.btnR) this.btnR.style.opacity = this.index === this.cards.length - 1 ? '0.2' : '1';
+    }
+
+    start(e) {
+        this.isDragging = true;
+        this.startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        this.track.style.transition = 'none';
+
+        if (e.type === 'mousedown') e.preventDefault();
+    }
+
+    drag(e) {
+        if (!this.isDragging) return;
+
+        const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        const diffX = currentX - this.startX;
+
+        let dragOffset = this.currentOffset + diffX;
+        const minOffset = this.getCenterPosition(this.cards.length - 1);
+        const maxOffset = this.getCenterPosition(0);
+
+        // Сопротивление по краям
+        if (dragOffset > maxOffset) {
+            dragOffset = maxOffset + (diffX * 0.25);
+        } else if (dragOffset < minOffset) {
+            dragOffset = minOffset + ((dragOffset - minOffset) * 0.25);
+        }
+
+        this.track.style.transform = `translateX(${dragOffset}px)`;
+    }
+
+    end(e) {
+        if (!this.isDragging) return;
+        this.isDragging = false;
+
+        const endX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
+        const diffX = endX - this.startX;
+
+        if (Math.abs(diffX) > 50) {
+            if (diffX > 0 && this.index > 0) {
+                this.index--;
+            } else if (diffX < 0 && this.index < this.cards.length - 1) {
+                this.index++;
+            }
+        }
+
+        this.move(true);
     }
 
     init() {
-        this.btnR?.addEventListener('click', () => { this.index++; this.move(); });
-        this.btnL?.addEventListener('click', () => { this.index--; this.move(); });
+        this.btnR?.addEventListener('click', () => { this.index++; this.move(true); });
+        this.btnL?.addEventListener('click', () => { this.index--; this.move(true); });
 
-        let startX = 0;
-        let currentTranslate = 0;
+        this.container.addEventListener('touchstart', (e) => this.start(e), { passive: true });
+        this.container.addEventListener('touchmove', (e) => this.drag(e), { passive: true });
+        this.container.addEventListener('touchend', (e) => this.end(e));
 
-        // Касание пальцем
-        this.container.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            currentTranslate = -this.index * this.getStep();
-            this.track.style.transition = 'none';
-        }, { passive: true });
+        this.container.addEventListener('mousedown', (e) => this.start(e));
+        window.addEventListener('mousemove', (e) => this.drag(e));
+        window.addEventListener('mouseup', (e) => this.end(e));
 
-        // Движение пальца (карточки едут вслед)
-        this.container.addEventListener('touchmove', (e) => {
-            const diff = e.touches[0].clientX - startX;
-            this.track.style.transform = `translateX(${currentTranslate + diff}px)`;
-        }, { passive: true });
-
-        // Конец касания
-        this.container.addEventListener('touchend', (e) => {
-            const diff = e.changedTouches[0].clientX - startX;
-            if (Math.abs(diff) > 50) {
-                diff > 0 ? this.index-- : this.index++;
-            }
-            this.move();
-        });
-
+        let resizeDebounce;
         window.addEventListener('resize', () => {
-            this.track.style.transition = 'none';
-            this.move();
+            clearTimeout(resizeDebounce);
+            resizeDebounce = setTimeout(() => this.move(false), 100);
         });
 
-        this.move();
+        this.move(false);
     }
 }
+
+// Инициализация карусели (безопасный запуск)
+document.addEventListener('DOMContentLoaded', () => {
+    const carouselElement = document.querySelector('.carousel-container');
+    if (carouselElement) {
+        new UniversalCarousel(carouselElement);
+    }
+});
+
 
 // --- 3. ЗАПУСК ПРИ ЗАГРУЗКЕ ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -171,8 +229,6 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach(section => observer.observe(section));
 
 // burger //
-
-
 // --- 4. МОБИЛЬНОЕ МЕНЮ ---
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const headerNavigation = document.getElementById('header-navigation');
@@ -180,12 +236,16 @@ const menuLinks = document.querySelectorAll('.header-menu .link');
 
 if (mobileMenuBtn && headerNavigation) {
     const toggleMenu = () => {
-        mobileMenuBtn.classList.toggle('is-open'); // Для анимации иконок (крестика)
-        headerNavigation.classList.toggle('is-open'); // Для открытия самого меню
-        document.body.classList.toggle('no-scroll'); // Чтобы сайт не крутился под меню
+        mobileMenuBtn.classList.toggle('is-open');
+        headerNavigation.classList.toggle('is-open');
+        document.body.classList.toggle('no-scroll');
     };
 
-    mobileMenuBtn.addEventListener('click', toggleMenu);
+    // Открытие/закрытие по клику на саму кнопку бургера
+    mobileMenuBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // Останавливаем всплытие, чтобы глобальный клик ниже не сработал сразу
+        toggleMenu();
+    });
 
     // Закрываем меню при клике на любую ссылку
     menuLinks.forEach(link => {
@@ -193,7 +253,25 @@ if (mobileMenuBtn && headerNavigation) {
             if (headerNavigation.classList.contains('is-open')) toggleMenu();
         });
     });
+
+    // ГЛОБАЛЬНЫЙ КЛИК: Следим за кликами по всему сайту
+    document.addEventListener('click', (event) => {
+        // Проверяем, открыто ли меню
+        const isMenuOpen = headerNavigation.classList.contains('is-open');
+
+        // Клик пришелся НА САМО меню?
+        const clickedInsideMenu = headerNavigation.contains(event.target);
+
+        // Клик пришелся НА КНОПКУ бургера?
+        const clickedOnBurgerBtn = mobileMenuBtn.contains(event.target);
+
+        // Если меню ОТКРЫТО, и пользователь кликнул ВНЕ меню и ВНЕ кнопки бургера — закрываем
+        if (isMenuOpen && !clickedInsideMenu && !clickedOnBurgerBtn) {
+            toggleMenu();
+        }
+    });
 }
+
 // Используем глобальное делегирование событий (работает для динамических модалок)
 const prefix = '+380';
 
