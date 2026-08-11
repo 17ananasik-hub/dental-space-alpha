@@ -40,6 +40,10 @@
     src: url('../fonts/poppins-v24-latin-900.woff2') format('woff2');
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     color: var(--color-primary-light);
     font-family: 'Poppins', sans-serif;
@@ -192,6 +196,7 @@ ul {
 
 .header-items {
     display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -205,10 +210,10 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(../img/hero.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/hero.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center 65%;
+    background-position: center 15%;
     border-radius: 12px;
     margin-bottom: 56px;
 }
@@ -236,8 +241,8 @@ ul {
 .hero-button {
     /* ГЛАВНЫЙ ЭФФЕКТ СТЕКЛА */
     /* blur — размытие, saturate — делает цвета фона под стеклом сочнее */
-    backdrop-filter: blur(20px) saturate(180%) brightness(120%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(120%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     /* Цвет фона должен быть едва заметным, чтобы не перекрывать искажения */
     background-color: rgba(255, 255, 255, 0.05);
@@ -406,6 +411,23 @@ ul {
     overflow: hidden;
 }
 
+.procedure-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: background 0.2s ease;
+}
+
+.procedure-card:hover::before {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.procedure-card-title,
+.procedure-card .button {
+    position: relative;
+    z-index: 2;
+}
 
 .procedure-image {
     position: absolute;
@@ -414,6 +436,7 @@ ul {
     width: 100%;
     height: 100%;
     z-index: -1;
+    object-fit: cover;
 }
 
 .procedure-content {
@@ -423,6 +446,7 @@ ul {
     flex-direction: column;
     align-items: center;
 }
+
 
 .procedure-image {
     clip-path: circle(0% at 50% 50%);
@@ -767,8 +791,7 @@ ul {
     padding: 18px;
     margin: 8px;
     margin-bottom: 64px;
-    max-height: 500px;
-    height: 100%;
+    height: 500px;
     border-radius: 12px;
     overflow: hidden;
 
@@ -829,7 +852,7 @@ ul {
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
     z-index: 2;
 }
@@ -955,14 +978,19 @@ ul {
 }
 
 .footer-logo {
-    max-width: 100px;
-    max-height: 120px;
+
+    height: 60px;
 }
 
 /*Modal*/
 /* backdrop */
 .modal-template {
     display: none;
+
+    max-width: 650px;
+    /* Идеальная ширина для читаемости прайса */
+    margin: 0 auto;
+    width: 100%;
 }
 
 .modal-title {
@@ -1173,6 +1201,7 @@ h4 {
     /* Выравнивание по базовой линии текста */
     margin-bottom: 12px;
     font-size: 16px;
+    width: 100%;
 }
 
 /* Название услуги */
@@ -1180,6 +1209,9 @@ h4 {
     flex-shrink: 0;
     /* Не сжимать название */
     padding-right: 8px;
+    max-width: 70%;
+
+    line-height: 1.4;
 }
 
 /* Точки между названием и ценой */
@@ -1192,14 +1224,19 @@ h4 {
     position: relative;
     top: -4px;
     /* Немного приподнимаем точки */
+    align-self: stretch;
 }
 
 /* Цена */
 .service-price {
     flex-shrink: 0;
-    /* Не сжимать цену */
-    font-weight: bold;
-    padding-left: 8px;
+    /* Запрещаем цене сжиматься или ломаться */
+    white-space: nowrap;
+    /* Запрещает перенос валюты (UAH) на новую строку */
+    font-weight: 600;
+    /* Делаем цену более заметной */
+    text-align: right;
+    min-width: 100px;
 }
 
 /* form */
@@ -1358,6 +1395,7 @@ h4 {
     .header-items {
         display: none;
         flex-direction: column;
+        align-items: center;
         position: absolute;
         top: 100%;
         left: 0;
@@ -1399,7 +1437,7 @@ h4 {
 
     .logo {
         margin: 8px;
-        height: 35px;
+        height: 55px;
 
     }
 
@@ -1708,7 +1746,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    margin: auto 12px;
     width: 56px;
     height: 44px;
     padding: 0;
@@ -1720,11 +1758,7 @@ body {
     transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s ease;
 }
 
-/* Дорогой ховер-эффект для кнопки */
-.theme-toggle:hover {
-    background-color: var(--bg-button-hover);
-    transform: scale(1.05);
-}
+
 
 /* Базовый стиль иконок внутри */
 .theme-icon {

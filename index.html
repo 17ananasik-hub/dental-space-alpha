@@ -28,16 +28,15 @@
 
             <div class="header-items" id="header-navigation">
                 <ul class="header-menu">
-                    <li class="header-item"><a class="link" href="#procedures-section" target="blank">Процедури</a>
-                    </li>
-                    <li class="header-item"><a class="link" href="#advantages-section" target="blank">Про нас</a></li>
-                    <li class="header-item"><a class="link" href="#contacts-section" target="blank">Контакти</a></li>
+                    <li class="header-item"><a class="link" href="#procedures-section">Процедури</a></li>
+                    <li class="header-item"><a class="link" href="#advantages-section">Про нас</a></li>
+                    <li class="header-item"><a class="link" href="#contacts-section">Контакти</a></li>
                 </ul>
                 <div class="buttons">
                     <button class="button" data-open="#modal-price">Прайс</button>
                     <button class="button" data-open="#modal-contact">Записатись</button>
                 </div>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему">
+                <button class="theme-toggle button" id="theme-toggle" aria-label="Переключить тему">
                     <!-- Иконка Луны (показывается на светлой теме) -->
                     <svg class="theme-icon id-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2">
@@ -64,8 +63,10 @@
     <main class="container">
         <section class="hero">
             <div class="hero-text">
-                <h1>DentalSpace</h1>
-                <p><span><a class="link" href="#contacts-section" target="blank">вул.Європейська 44б</a></span>
+                <a href="./index.html">
+                    <img class="logo" src="img/card-bg.png" alt="logo" height="60px">
+                </a>
+                <p><span><a class="link" href="#contacts-section">вул.Європейська 44б</a></span>
                 </p>
                 <button class="button hero-button " data-open="#modal-contact">Записатись</button>
             </div>
@@ -82,7 +83,7 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-1.jpg" alt="procedures-1">
-                                    <h3 class="procedure-card-title">Профілактика</h3>
+                                    <h3 class="procedure-card-title">Обстеження</h3>
                                     <a href="#procedure-1" class="button" data-open="#modal-price">Процедури</a>
 
                                 </div>
@@ -102,7 +103,7 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-3.jpg" alt="procedures-3">
-                                    <h3 class="procedure-card-title">Профілактика</h3>
+                                    <h3 class="procedure-card-title">Капа для відбілювання</h3>
                                     <a href="#procedure-3" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
@@ -111,7 +112,7 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-4.jpg" alt="procedures-4">
-                                    <h3 class="procedure-card-title">Ортодонтія вроде,я хз</h3>
+                                    <h3 class="procedure-card-title">Реставрація зуба</h3>
                                     <a href="#procedure-4" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
@@ -120,7 +121,7 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-5.jpg" alt="procedures-5">
-                                    <h3 class="procedure-card-title">Дайте деняк</h3>
+                                    <h3 class="procedure-card-title">Лікування каналів</h3>
                                     <a href="#procedure-5" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
@@ -129,7 +130,7 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-6.jpg" alt="procedures-6">
-                                    <h3 class="procedure-card-title">Дай краба</h3>
+                                    <h3 class="procedure-card-title">Хірургія</h3>
                                     <a href="#procedure-6" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
@@ -138,20 +139,12 @@
 
                                 <div class="procedure-content">
                                     <img class="procedure-image" src="./img/procedures-7.jpg" alt="procedures-7">
-                                    <h3 class="procedure-card-title">Попиздіти</h3>
+                                    <h3 class="procedure-card-title">Ортопедія</h3>
                                     <a href="#procedure-7" class="button" data-open="#modal-price">Процедури</a>
                                 </div>
 
                             </article>
-                            <article class="procedure-card">
 
-                                <div class="procedure-content">
-                                    <img class="procedure-image" src="./img/procedures-8.jpg" alt="procedures-8">
-                                    <h3 class="procedure-card-title">Фоткаю лоха</h3>
-                                    <a href="#procedure-8" class="button" data-open="#modal-price">Процедури</a>
-                                </div>
-
-                            </article>
                         </div>
                     </div>
 
@@ -338,50 +331,58 @@
                     <div class="carousel-track results-gallery">
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-1.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-2.jpg" alt="after">
                             </div>
                         </div>
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-3.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-4.jpg" alt="after">
                             </div>
                         </div>
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-5.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-6.jpg" alt="after">
                             </div>
                         </div>
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-7.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-8.jpg" alt="after">
                             </div>
                         </div>
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-9.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-10.jpg" alt="after">
                             </div>
                         </div>
                         <div class="results-card procedure-card">
                             <div class="results-photo results-photo--before">
-                                <img src="./img/results-1.jpg" alt="before">
+                                <img src="./img/result-11.jpg" alt="before">
                             </div>
                             <div class="results-photo results-photo--after">
-                                <img src="./img/results-2.jpg" alt="after">
+                                <img src="./img/result-12.jpg" alt="after">
+                            </div>
+                        </div>
+                        <div class="results-card procedure-card">
+                            <div class="results-photo results-photo--before">
+                                <img src="./img/result-13.jpg" alt="before">
+                            </div>
+                            <div class="results-photo results-photo--after">
+                                <img src="./img/result-14.jpg" alt="after">
                             </div>
                         </div>
                     </div>
@@ -399,11 +400,10 @@
 
             <div class="footer-addres">
                 <ul>
-                    <li><a class="address-link" href="tel:+380992725961"> +380 99 272 5961</a></li>
-                    <li><a class="address-link" href="mailto:17Ananasik@gmail.com">17Ananasik@gmail.com</a></li>
+                    <li><a class="address-link" href="tel:+380992725961"> +380 66 930 29 01</a></li>
+                    <li><a class="address-link" href="mailto:17Ananasik@gmail.com">Exemple@gmail.com</a></li>
                     <li><a class="address-link" href="https://maps.app.goo.gl/HKxRZzyBFMbsS7jv6" target="_blank">Україна
-                            Одеса вул Дмітрія
-                            Іванова,12.</a></li>
+                            Одеська обл. м.Роздыльна вул _____</a></li>
                     <a class="address-link" href="#" target="blank"> Політика
                         конфідейціності</a>
                     <p class="address-link">&copy;2025 Дані захищенні</p>
@@ -411,17 +411,18 @@
                 </ul>
             </div>
             <div class="footer-links">
-                <ul>
-                    <li><a class="link" href="#" target="_blank">Процедури</a></li>
-                    <li><a class="link" href="#" target="_blank">Про нас</a></li>
-                    <li><a class="link" href="#" target="_blank">Контакти</a></li>
+                <ul class="header-menu">
+                    <li class="header-item"><a class="link" href="#procedures-section">Процедури</a></li>
+                    <li class="header-item"><a class="link" href="#advantages-section">Про нас</a></li>
+                    <li class="header-item"><a class="link" href="#contacts-section">Контакти</a></li>
                 </ul>
+
             </div>
             <div class="footer-social">
                 <ul>
-                    <li><a class="link" href="#" target="_blank">Instagram</a></li>
-                    <li><a class="link" href="#" target="_blank">Telegram</a></li>
-                    <li><a class="link" href="#" target="_blank">Facebook</a></li>
+                    <li><a class="link"
+                            href="https://www.instagram.com/dr_tkhorzhevska_nadiia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                            target="_blank">Instagram</a></li>
                 </ul>
             </div>
 
@@ -464,434 +465,401 @@
     <div id="modal-price" class="modal-template is-hidden">
         <h2 class="modal-title">Прайс</h2>
         <div class="card" id="procedure-1">
-            <h3>Профілактика</h3>
+            <h4>Обстеження</h4>
             <ul class="price-list">
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Консультація та складання плану лікування</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">500.00 UAH</span>
                 </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
+
             </ul>
         </div>
         <div class="card" id="procedure-2">
-            <h3>Профілактика</h3>
+            <h4>Профілактика</h4>
             <ul class="price-list">
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Ремінералізуюча аплікація/фторування (за 1 од)</span>
                     <span class="dots"></span>
                     <span class="service-price">1200 ₴</span>
                 </li>
                 <li class="price-item">
                     <span class="service-name">Професійна чистка (Air-Flow)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
+                    <span class="service-price">200.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="service-name">Герметизація фісур SDR (1 зуб)</span>
                     <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
+                    <span class="service-price">1500.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Профілактична гігієна комплексна ( низької складності)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">1600.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="service-name">Профілактична гігієна комплексна ( середньої складності)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
+                    <span class="service-price">2400.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="service-name">Профілактична гігієна комплексна ( високої складності)</span>
                     <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
+                    <span class="service-price">3600.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Капа для відбілювання/ремінералізації</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">3000.00 UAH</span>
                 </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
+
             </ul>
         </div>
         <div class="card" id="procedure-3">
-            <h3>Профілактика</h3>
+            <h4>Капа для відбілювання</h4>
             <ul class="price-list">
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Капа для відбілювання та ремінералізації (окремо гель для відбілювання
+                        )</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">3000.00 UAH</span>
                 </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
+
             </ul>
         </div>
         <div class="card" id="procedure-4">
-            <h3>Профілактика</h3>
+            <h4>Лікування карієсу / Реставрації</h4>
             <ul class="price-list">
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Склоіономерна реставрація поверхневий карієс (RIVA LIGHT CURE)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">900.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="service-name">Склоіономерна реставрація середній карієс (RIVA LIGHT CURE)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
+                    <span class="service-price">1300.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="service-name">Склоіономерна реставрація глибокий карієс (RIVA LIGHT CURE)</span>
                     <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
+                    <span class="service-price">1600.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Фотополімерна реставрація карієс в стадії плями (Esthelite)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">1400.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="service-name">Фотополімерна реставрація середній карієс без контактного пункта
+                        (Esthelite )</span>
                     <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
+                    <span class="service-price">1800.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="service-name">Фотополімерна реставрація глибокий карієс без контактного пункта
+                        (Esthelite)</span>
                     <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
+                    <span class="service-price">2200.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Профілактика</span>
+                    <span class="service-name">Фотополімерна реставрація середній карієс з контактним пунктом
+                        (Esthelite)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">2600.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="service-name">Фотополімерна реставрація глибокий карієс з контактним пунктом
+                        (Esthelite)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
+                    <span class="service-price">3400.00 UAH</span>
                 </li>
                 <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="service-name">Тимчасова пломба Дентин-паста (ARDE)</span>
                     <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
+                    <span class="service-price">400.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Тимчасова пломба фотополімерна (Tempolat)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">700.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Тимчасова пломба фотополімерна естетична (Charisma)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">900.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Build-up або додаткова стінка поверхнево без контактного пункту
+                        (Esthelite Palfic)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">600.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Build-up або додаткова стінка поверхнево з контактним пунктом (Esthelite
+                        Palfic)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">800.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Адгезивне шинування прозорою стрічкою (J-fiber) 1 контактний пункт</span>
+                    <span class="dots"></span>
+                    <span class="service-price">900.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Прокладка ізолююча/лікувальна SDR</span>
+                    <span class="dots"></span>
+                    <span class="service-price">600.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Закриття рогу пульпи біокерамікою (Wellroot)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">700.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання гелем "ARDE Lumine LC" дві щелепи ( 1 сеанс) одна
+                        щелепа</span>
+                    <span class="dots"></span>
+                    <span class="service-price">2200.00 UAH</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання гелем "ARDE Lumine LC" дві щелепи ( 1 курс - 4 сеанси) одна
+                        щелепа</span>
+                    <span class="dots"></span>
+                    <span class="service-price">7000.00 UAH</span>
                 </li>
             </ul>
         </div>
         <div class="card" id="procedure-5">
-            <h4>Профілактика</h3>
-                <ul class="price-list">
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                </ul>
+            <h4>Профілактика</h4>
+            <ul class="price-list">
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+            </ul>
         </div>
         <div class="card" id="procedure-6">
-            <h4>Профілактика</h3>
-                <ul class="price-list">
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                </ul>
+            <h4>Профілактика</h4>
+            <ul class="price-list">
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+            </ul>
         </div>
         <div class="card" id="procedure-7">
-            <h4>Профілактика</h3>
-                <ul class="price-list">
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                </ul>
+            <h4>Профілактика</h4>
+            <ul class="price-list">
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+            </ul>
         </div>
         <div class="card" id="procedure-8">
-            <h4>Профілактика</h3>
-                <ul class="price-list">
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Профілактика</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1200 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Професійна чистка (Air-Flow)</span>
-                        <span class="dots"></span>
-                        <span class="service-price">1500 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                    <li class="price-item">
-                        <span class="service-name">Відбілювання зубів</span>
-                        <span class="dots"></span>
-                        <span class="service-price">3000 ₴</span>
-                    </li>
-                </ul>
+            <h4>Профілактика</h4>
+            <ul class="price-list">
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Профілактика</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1200 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Професійна чистка (Air-Flow)</span>
+                    <span class="dots"></span>
+                    <span class="service-price">1500 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+                <li class="price-item">
+                    <span class="service-name">Відбілювання зубів</span>
+                    <span class="dots"></span>
+                    <span class="service-price">3000 ₴</span>
+                </li>
+            </ul>
         </div>
     </div>
     <div id="modal-diploma" class="modal-template is-hidden">
