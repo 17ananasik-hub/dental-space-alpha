@@ -986,7 +986,7 @@ ul {
 /* backdrop */
 .modal-template {
     display: none;
-
+    align-items: center;
     max-width: 650px;
     /* Идеальная ширина для читаемости прайса */
     margin: 0 auto;
@@ -1046,7 +1046,7 @@ ul {
 }
 
 .modal::-webkit-scrollbar {
-    width: 3px;
+    width: 4px;
 }
 
 .modal::-webkit-scrollbar-thumb {
@@ -1134,7 +1134,6 @@ ul {
     flex-direction: column;
     width: 100%;
     max-width: 500px;
-    height: 200px;
     padding: 20px;
     margin: 8px;
     background: transparent;
@@ -1142,6 +1141,8 @@ ul {
     border: 1px solid var(--color-primary-light);
     box-sizing: border-box;
 }
+
+
 
 /* Эффект для элемента, на который перешли по ссылке-якорю */
 .card:target {
@@ -1167,26 +1168,18 @@ ul {
     }
 }
 
-
+.price-card {
+    display: flex;
+    align-items: center;
+    margin: 12px auto;
+}
 
 .price-list {
     flex-grow: 1;
     /* Список заберет всё свободное место в карточке */
-    overflow-y: auto;
+
     /* Включает скролл, если услуг больше, чем на 200px */
     margin-top: 10px;
-    padding-right: 5px;
-    /* Отступ для полосы прокрутки */
-}
-
-/* Настройка скроллбара, чтобы он был тонким и аккуратным */
-.price-list::-webkit-scrollbar {
-    width: 3px;
-}
-
-.price-list::-webkit-scrollbar-thumb {
-    background-color: var(--color-primary-light);
-    border-radius: 10px;
 }
 
 h4 {
@@ -1246,10 +1239,11 @@ h4 {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    margin: 24px auto;
 }
 
 .modal-button {
-    margin-top: 18px;
+    margin: 18px auto 24px;
 }
 
 .modal-input {
@@ -1569,11 +1563,15 @@ h4 {
     .modal {
         height: 100%;
         width: 100%;
-        max-height: 500px;
+        max-height: 700px;
         max-width: 400px;
         padding: 32px 10px 10px 10px;
 
         align-content: center;
+    }
+
+    .modal-input-content {
+        margin: 12px;
     }
 
     .modal-button {
