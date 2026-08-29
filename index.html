@@ -36,26 +36,7 @@
                     <button class="button" data-open="#modal-price">Прайс</button>
                     <button class="button" data-open="#modal-contact">Записатись</button>
                 </div>
-                <button class="theme-toggle button" id="theme-toggle" aria-label="Переключить тему">
-                    <!-- Иконка Луны (показывается на светлой теме) -->
-                    <svg class="theme-icon id-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <!-- Иконка Солнца (показывается на темной теме) -->
-                    <svg class="theme-icon id-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
+
 
             </div>
         </div>
@@ -465,7 +446,16 @@
     <div id="modal-price" class="modal-template is-hidden">
         <h2 class="modal-title">Прайс</h2>
         <div class="card price-card" id="procedure-1">
-            <h4>Обстеження</h4>
+            <div class="item-name">
+                <h4>Обстеження</h4>
+
+                <button class="help-btn" type="button" data-open="#modal-help" aria-label="Помощь">
+                    <img class="help-icon" src="/img/help-svg.svg" alt="help-btn">
+                </button>
+            </div>
+
+
+
             <ul class="price-list">
                 <li class="price-item">
                     <span class="service-name">Консультація та складання плану лікування</span>
@@ -481,7 +471,7 @@
                 <li class="price-item">
                     <span class="service-name">Ремінералізуюча аплікація/фторування (за 1 од)</span>
                     <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
+                    <span class="service-price">1200 UAH</span>
                 </li>
                 <li class="price-item">
                     <span class="service-name">Професійна чистка (Air-Flow)</span>
@@ -967,66 +957,7 @@
 
             </ul>
         </div>
-        <div class="card price-card" id="procedure-8">
-            <h4>Профілактика</h4>
-            <ul class="price-list">
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Профілактика</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1200 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Професійна чистка (Air-Flow)</span>
-                    <span class="dots"></span>
-                    <span class="service-price">1500 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-                <li class="price-item">
-                    <span class="service-name">Відбілювання зубів</span>
-                    <span class="dots"></span>
-                    <span class="service-price">3000 ₴</span>
-                </li>
-            </ul>
-        </div>
+
     </div>
     <div id="modal-diploma" class="modal-template is-hidden">
         <h2 class="modal-title">Дипломи</h2>
@@ -1054,6 +985,15 @@
         <div class="diploma-container">
             <img src="./img/diploma.jpg">
         </div>
+    </div>
+    <div id="modal-help" class="modal-template is-hidden">
+
+        <h1>ЖОПА</h1>
+        <p>сосать жопу полезнодля здоровья как ментального так и физического</p>
+
+        <button type="button" class="modal-help-close">Назад к прайсу</button>
+    </div>
+    </div>
     </div>
     <script src="./modal/modal.js"></script>
     <script src="script.js"></script>

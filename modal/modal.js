@@ -77,6 +77,7 @@ document.querySelectorAll('.button[data-anchor]').forEach(button => {
         }
     });
 });
+
 // --- 2. КИНЕТИЧЕСКАЯ КАРУСЕЛЬ С 3D-ЦЕНТРИРОВАНИЕМ (ИСПРАВЛЕННАЯ) ---
 class UniversalCarousel {
     constructor(container) {
@@ -313,32 +314,14 @@ document.addEventListener('input', (event) => {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (!themeToggleBtn) return;
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.modal-help-close')) {
+        const contentBox = document.querySelector('[data-modal-content]');
+        const priceTemplate = document.querySelector('#modal-price');
 
-    // Проверяем, сохранил ли пользователь тему ранее, или берем системную
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Определяем стартовую тему
-    const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-
-    // Устанавливаем тему при загрузке
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    // Обработчик клика по кнопке
-    themeToggleBtn.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-
-        if (isDark) {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
+        if (contentBox && priceTemplate) {
+            // Возвращаем контент прайса на место (делаем шаг назад)
+            contentBox.innerHTML = priceTemplate.innerHTML;
         }
-    });
+    }
 });

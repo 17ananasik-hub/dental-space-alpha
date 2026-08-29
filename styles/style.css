@@ -343,7 +343,7 @@ ul {
     z-index: 10;
 
     /* Цвет стрелки на светлой теме */
-    color: var(--color-primary-brand) !important;
+    color: var(--color-primary-light) !important;
 
     /* Плавная дорогая анимация цвета и движения */
     transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
@@ -367,20 +367,6 @@ ul {
     /* Правая стрелка уходит вправо */
 }
 
-
-/* ======================================================= */
-/* АВТОМАТИЧЕСКАЯ ИНВЕРСИЯ СТРЕЛОК ДЛЯ ТЕМНОЙ ТЕМЫ */
-/* ======================================================= */
-
-/* Цвет стрелки на темной теме */
-[data-theme="dark"] .carousel-btn {
-    color: var(--color-primary-light) !important;
-}
-
-/* Ховер для темной темы — стрелка становится чисто белой */
-[data-theme="dark"] .carousel-btn:hover {
-    color: #ffffff !important;
-}
 
 /* Эффект при клике (для обеих тем) */
 .carousel-btn:active {
@@ -1185,7 +1171,41 @@ ul {
 h4 {
     text-transform: uppercase;
     font-weight: 300;
+    margin: 0;
 }
+
+/*PRICE-HELP*/
+/* Контейнер для заголовка и кнопки */
+.item-name {
+    display: flex;
+    justify-content: center;
+    /* Выравнивает заголовок и кнопку строго по одной горизонтальной линии */
+    gap: 6px;
+    /* Маленький аккуратный отступ между текстом и кнопкой */
+}
+
+/* Кнопка-обертка */
+.help-btn {
+
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    /* Сделали чуть ярче в спокойном состоянии */
+}
+
+/* Сама картинка внутри кнопки */
+.help-icon {
+    /* Жестко задаем размеры, чтобы картинка не сжималась в 0 */
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 .price-item {
@@ -1202,23 +1222,24 @@ h4 {
     flex-shrink: 0;
     /* Не сжимать название */
     padding-right: 8px;
-    max-width: 70%;
+    max-width: 55%;
 
     line-height: 1.4;
 }
 
 /* Точки между названием и ценой */
+
 .dots {
     flex-grow: 1;
     /* Занимает всё свободное место */
-    border-bottom: 2px dotted var(--color-primary-brand-light);
-    /* Создает эффект точек */
+
     margin: 0 5px;
     position: relative;
     top: -4px;
     /* Немного приподнимаем точки */
     align-self: stretch;
 }
+
 
 /* Цена */
 .service-price {
@@ -1704,89 +1725,4 @@ h4 {
         margin: 0;
         font-weight: 400;
     }
-}
-
-:root {
-    /* Ваши базовые цвета (Светлая тема по умолчанию) */
-    --color-primary-brand: #1c1c1c;
-    --color-primary-light: #e5e5e5;
-    --color-primary-brand-light: #2d2d2d;
-
-    /* Динамические переменные, которые используются на сайте */
-    --bg-page: var(--color-primary-light);
-    --text-color: var(--color-primary-brand);
-    --bg-button: var(--color-primary-brand);
-    --bg-button-hover: var(--color-primary-brand-light);
-    --text-button: var(--color-primary-light);
-}
-
-/* Переменные для Темной темы (инвертируем цвета) */
-[data-theme="dark"] {
-    --bg-page: var(--color-primary-brand);
-    --text-color: var(--color-primary-light);
-    --bg-button: var(--color-primary-light);
-    --bg-button-hover: #ffffff;
-    --text-button: var(--color-primary-brand);
-}
-
-/* Глобальные плавные переходы для элементов сайта */
-body {
-    background-color: var(--bg-page);
-    color: var(--text-color);
-    transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* Стили кнопки переключателя */
-
-
-.theme-toggle {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto 12px;
-    width: 56px;
-    height: 44px;
-    padding: 0;
-    cursor: pointer;
-    background-color: var(--bg-button);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s ease;
-}
-
-
-
-/* Базовый стиль иконок внутри */
-.theme-icon {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    stroke: var(--text-button);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        opacity 0.3s ease;
-}
-
-/* Логика отображения иконок с анимацией вращения */
-/* По умолчанию (светлая тема): скрываем солнце, показываем луну */
-.theme-toggle .id-sun {
-    opacity: 0;
-    transform: rotate(90deg) scale(0.5);
-}
-
-.theme-toggle .id-moon {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-}
-
-/* В темной теме: показываем солнце, скрываем луну */
-[data-theme="dark"] .theme-toggle .id-sun {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-}
-
-[data-theme="dark"] .theme-toggle .id-moon {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
 }
