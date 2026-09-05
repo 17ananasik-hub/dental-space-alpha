@@ -78,144 +78,115 @@ document.querySelectorAll('.button[data-anchor]').forEach(button => {
     });
 });
 
-// --- 2. КИНЕТИЧЕСКАЯ КАРУСЕЛЬ С 3D-ЦЕНТРИРОВАНИЕМ (ИСПРАВЛЕННАЯ) ---
 class UniversalCarousel {
     constructor(container) {
-        if (!container) return;
         this.container = container;
         this.track = container.querySelector('.carousel-track');
-        this.btnL = container.querySelector('.carousel-btn-left');
-        this.btnR = container.querySelector('.carousel-btn-right');
-        this.cards = this.track ? this.track.children : [];
+        this.cards = [...this.track.children];
+        this.left = container.querySelector('.carousel-btn-left');
+        this.right = container.querySelector('.carousel-btn-right');
 
         this.index = 0;
+        this.offset = 0;
         this.startX = 0;
-        this.currentOffset = 0;
-        this.isDragging = false;
+        this.dragging = false;
 
-        if (this.cards.length > 0) this.init();
+        this.init();
     }
 
-    // Точный расчет позиции для центрирования карточки
-    getCenterPosition(idx) {
-        const card = this.cards[idx];
-        if (!card) return 0;
-
-        const containerWidth = this.container.offsetWidth;
-        const cardLeft = card.offsetLeft;
-        const cardWidth = card.offsetWidth;
-
-        // Центрируем карточку математически относительно контейнера
-        return -(cardLeft - (containerWidth / 2) + (cardWidth / 2));
+    center(index) {
+        const card = this.cards[index];
+        return -(card.offsetLeft + card.offsetWidth / 2 - this.container.offsetWidth / 2);
     }
 
     move(smooth = true) {
-        if (this.cards.length === 0) return;
-
         this.index = Math.max(0, Math.min(this.index, this.cards.length - 1));
-        this.currentOffset = this.getCenterPosition(this.index);
+        this.offset = this.center(this.index);
 
-        this.track.style.transition = smooth ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
-        this.track.style.transform = `translateX(${this.currentOffset}px)`;
+        this.track.style.transition = smooth
+            ? 'transform .5s cubic-bezier(.25,1,.5,1)'
+            : 'none';
 
-        // Обновляем классы активности для 3D-эффекта
-        Array.from(this.cards).forEach((card, idx) => {
-            if (idx === this.index) {
-                card.classList.add('is-active');
-            } else {
-                card.classList.remove('is-active');
-            }
-        });
+        this.track.style.transform = `translateX(${this.offset}px)`;
 
-        // Управление стрелками
-        if (this.btnL) this.btnL.style.opacity = this.index === 0 ? '0.2' : '1';
-        if (this.btnR) this.btnR.style.opacity = this.index === this.cards.length - 1 ? '0.2' : '1';
+        this.cards.forEach((card, i) =>
+            card.classList.toggle('is-active', i === this.index)
+        );
     }
 
     start(e) {
-        this.isDragging = true;
-        this.startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        this.dragging = true;
+        this.startX = e.touches?.[0].clientX ?? e.clientX;
         this.track.style.transition = 'none';
-
-        if (e.type === 'mousedown') e.preventDefault();
     }
 
     drag(e) {
-        if (!this.isDragging) return;
+        if (!this.dragging) return;
 
-        const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-        const diffX = currentX - this.startX;
+        const x = e.touches?.[0].clientX ?? e.clientX;
+        const diff = x - this.startX;
+        let offset = this.offset + diff;
 
-        let dragOffset = this.currentOffset + diffX;
-        const minOffset = this.getCenterPosition(this.cards.length - 1);
-        const maxOffset = this.getCenterPosition(0);
+        const min = this.center(this.cards.length - 1);
+        const max = this.center(0);
 
-        // Сопротивление по краям
-        if (dragOffset > maxOffset) {
-            dragOffset = maxOffset + (diffX * 0.25);
-        } else if (dragOffset < minOffset) {
-            dragOffset = minOffset + ((dragOffset - minOffset) * 0.25);
-        }
+        if (offset > max) offset = max + diff * .25;
+        if (offset < min) offset = min + (offset - min) * .25;
 
-        this.track.style.transform = `translateX(${dragOffset}px)`;
+        this.track.style.transform = `translateX(${offset}px)`;
     }
 
     end(e) {
-        if (!this.isDragging) return;
-        this.isDragging = false;
+        if (!this.dragging) return;
 
-        const endX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX;
-        const diffX = endX - this.startX;
+        this.dragging = false;
 
-        if (Math.abs(diffX) > 50) {
-            if (diffX > 0 && this.index > 0) {
-                this.index--;
-            } else if (diffX < 0 && this.index < this.cards.length - 1) {
-                this.index++;
-            }
-        }
+        const x = e.changedTouches?.[0].clientX ?? e.clientX;
+        const diff = x - this.startX;
 
-        this.move(true);
+        if (Math.abs(diff) > 50)
+            this.index += diff < 0 ? 1 : -1;
+
+        this.move();
     }
 
     init() {
-        this.btnR?.addEventListener('click', () => { this.index++; this.move(true); });
-        this.btnL?.addEventListener('click', () => { this.index--; this.move(true); });
-
-        this.container.addEventListener('touchstart', (e) => this.start(e), { passive: true });
-        this.container.addEventListener('touchmove', (e) => this.drag(e), { passive: true });
-        this.container.addEventListener('touchend', (e) => this.end(e));
-
-        this.container.addEventListener('mousedown', (e) => this.start(e));
-        window.addEventListener('mousemove', (e) => this.drag(e));
-        window.addEventListener('mouseup', (e) => this.end(e));
-
-        let resizeDebounce;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeDebounce);
-            resizeDebounce = setTimeout(() => this.move(false), 100);
+        this.right?.addEventListener('click', () => {
+            this.index++;
+            this.move();
         });
 
-        this.move(false);
+        this.left?.addEventListener('click', () => {
+            this.index--;
+            this.move();
+        });
+
+        this.container.addEventListener('touchstart', e => this.start(e), { passive: true });
+        this.container.addEventListener('touchmove', e => this.drag(e), { passive: true });
+        this.container.addEventListener('touchend', e => this.end(e));
+
+        this.container.addEventListener('mousedown', e => this.start(e));
+        window.addEventListener('mousemove', e => this.drag(e));
+        window.addEventListener('mouseup', e => this.end(e));
+
+        window.addEventListener('resize', () => {
+            if (this.index === 0) {
+                this.track.style.transform = 'translateX(0)';
+            } else {
+                this.move(false);
+            }
+        });
+
+        // Первая карточка у левого края
+        this.track.style.transform = 'translateX(0)';
+        this.cards[0].classList.add('is-active');
     }
 }
 
-// Инициализация карусели (безопасный запуск)
 document.addEventListener('DOMContentLoaded', () => {
-    const carouselElement = document.querySelector('.carousel-container');
-    if (carouselElement) {
-        new UniversalCarousel(carouselElement);
-    }
+    document.querySelectorAll('.carousel-container')
+        .forEach(carousel => new UniversalCarousel(carousel));
 });
-
-
-// --- 3. ЗАПУСК ПРИ ЗАГРУЗКЕ ---
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.carousel-container').forEach(container => {
-        new UniversalCarousel(container);
-    });
-});
-
 // section animations //
 const sections = document.querySelectorAll('.workflow, .advantages-section');
 
@@ -325,3 +296,42 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+
+const helpModal = document.querySelector('#modal-help');
+
+if (helpModal) {
+    // Находим сами ссылки <a>, которые лежат внутри кнопок .help-btn
+    const helpLinks = document.querySelectorAll('.help-btn a[href^="#help-"]');
+
+    helpLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Отменяем стандартный мгновенный прыжок браузера по ссылке
+            e.preventDefault();
+
+            // Безопасно берем ID из атрибута href
+            const anchorId = link.getAttribute('href').substring(1);
+            const targetElement = helpModal.querySelector(`#${anchorId}`);
+
+            if (!targetElement) return;
+
+            // Ждём открытия модалки
+            setTimeout(() => {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Перезапускаем анимацию при каждом клике
+                targetElement.classList.remove('help-highlight');
+                void targetElement.offsetWidth; // Магия для сброса анимации
+                targetElement.classList.add('help-highlight');
+
+                // Убираем подсветку через 4 секунды
+                setTimeout(() => {
+                    targetElement.classList.remove('help-highlight');
+                }, 4000);
+
+            }, 300);
+        });
+    });
+}

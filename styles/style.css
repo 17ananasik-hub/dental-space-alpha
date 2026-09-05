@@ -141,7 +141,7 @@ ul {
     background-color: var(--color-primary-light);
     -webkit-text-fill-color: var(--color-primary-brand);
     font-weight: 600;
-    font-size: 16px;
+    text-transform: uppercase;
 
     padding: 14px 32px;
     margin: auto 12px;
@@ -179,10 +179,14 @@ ul {
     top: 0;
     z-index: 10;
     width: 100%;
-    padding: 0 56px;
+    padding: 0 40px;
     margin: 0px auto;
     margin-bottom: 16px;
-    background-color: var(--color-primary-brand-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Цвет фона должен быть едва заметным, чтобы не перекрывать искажения */
+    background: rgba(49, 49, 49, 0.4);
     z-index: 15;
 }
 
@@ -200,7 +204,7 @@ ul {
 }
 
 .logo {
-    margin: 4px;
+    margin: 2px;
 }
 
 /*Hero*/
@@ -283,7 +287,7 @@ ul {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 50px;
+    padding: 0 15px;
     box-sizing: border-box;
 }
 
@@ -291,6 +295,8 @@ ul {
 .carousel-viewport {
     overflow: hidden;
     width: 100%;
+    cursor: grab;
+    overflow: hidden;
     touch-action: pan-y;
 }
 
@@ -300,6 +306,9 @@ ul {
     transition: transform 0.4s ease-out;
     will-change: transform;
     gap: 20px;
+
+    display: flex;
+    transition: transform .4s ease;
 }
 
 /* Card base styles - adjust to match your existing styles */
@@ -316,72 +325,33 @@ ul {
 }
 
 /* Navigation Buttons */
-/* Базовое состояние (Светлая тема) — только стрелка */
 .carousel-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-    /* Убираем фиксированную ширину круга */
-    height: auto;
-    /* Убираем фиксированную высоту круга */
     padding: 10px;
-    /* Область клика, чтобы пользователю было легко попасть */
-
-    background: transparent !important;
-    /* Полностью убираем фон */
-    border: none !important;
-    border-radius: 0;
-    box-shadow: none !important;
-    /* Убираем тени круга */
-
-    font-size: 24px;
-    /* Делаем стрелку чуть крупнее, так как фона больше нет */
-    font-weight: 300;
-    /* Тонкая изящная стрелка выглядит дороже */
     cursor: pointer;
     z-index: 10;
-
-    /* Цвет стрелки на светлой теме */
-    color: var(--color-primary-light) !important;
-
-    /* Плавная дорогая анимация цвета и движения */
-    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-        transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-        opacity 0.2s ease;
+    transition: transform .2s ease, opacity .2s ease;
 }
 
-/* Эффект ховера для светлой темы — стрелка становится чуть светлее */
-.carousel-btn:hover {
-    color: var(--color-primary-brand-light) !important;
+.carousel-btn img {
+    display: block;
+    width: 40px;
 }
 
-/* Интерактивная микро-анимация: стрелки слегка расходятся в стороны при наведении */
-.carousel-btn-left:hover {
-    transform: translateY(-50%) translateX(-4px);
-    /* Левая стрелка уходит влево */
+.carousel-btn-left.carousel-btn-right {
+    left: 15px;
 }
 
+
+.carousel-btn-left:hover,
 .carousel-btn-right:hover {
-    transform: translateY(-50%) translateX(4px);
-    /* Правая стрелка уходит вправо */
+    transform: translateY(10%);
 }
 
-
-/* Эффект при клике (для обеих тем) */
 .carousel-btn:active {
-    opacity: 0.5;
+    transform: translateY(-50%) scale(.9);
 }
-
-
-.carousel-btn-left {
-    left: 5px;
-}
-
-.carousel-btn-right {
-    right: 5px;
-}
-
 
 .procedure-card {
     position: relative;
@@ -413,6 +383,11 @@ ul {
 .procedure-card .button {
     position: relative;
     z-index: 2;
+}
+
+.procedure-card .button {
+    font-weight: 600;
+    font-size: 12px;
 }
 
 .procedure-image {
@@ -459,22 +434,6 @@ ul {
     margin-bottom: 36px;
 }
 
-.carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.carousel-viewport {
-    overflow: hidden;
-    touch-action: pan-y;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    transition: transform .4s ease;
-}
 
 /* карточка */
 .dantist-card {
@@ -509,7 +468,7 @@ ul {
     z-index: 2;
     font-size: 2rem;
     background: transparent;
-    color: #fff;
+    color: var(--color-primary-light);
     border: none;
     padding: 8px 16px;
     border-radius: 50%;
@@ -720,35 +679,6 @@ ul {
     transform: scale(1.05);
 }
 
-.contact-button {
-    width: 100%;
-    margin-top: 10px;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(4px);
-    border-radius: 16px;
-    -webkit-text-fill-color: var(--color-primary-light);
-    font-size: 16px;
-    border-left: none;
-    border-bottom: none;
-    border-right: 1.5px solid rgba(255, 255, 255, 0.5);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.5);
-    font-weight: 600;
-    padding: 14px 32px;
-    margin: auto 12px;
-    transition: 0.3s;
-}
-
-.contact-button:hover {
-    border-left: 1.5px solid rgba(255, 255, 255, 0.5);
-    border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
-    border-top: none;
-    border-right: none;
-    background: rgba(255, 255, 255, 0.377);
-    transform: translateY(4px);
-    transition: 0.3s;
-    cursor: pointer;
-    box-shadow: 0 16px 24px rgba(255, 255, 255, 0.418);
-}
 
 .contact-map {
     width: 100%;
@@ -763,8 +693,6 @@ ul {
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-size: 24px;
-    font-weight: 600;
     -webkit-text-fill-color: var(--color-primary-light);
     margin-bottom: 24px;
 }
@@ -870,17 +798,7 @@ ul {
     margin: 0 auto;
 }
 
-.carousel-viewport {
-    overflow: hidden;
-    width: 100%;
-    cursor: grab;
-}
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.4s ease-out;
-    will-change: transform;
-}
 
 .procedure-card {
     flex: 0 0 calc(33.333%);
@@ -907,13 +825,12 @@ ul {
     display: flex;
     justify-content: center;
     font-size: 28px;
-    font-weight: 400;
 }
 
 .results-gallery {
     display: flex;
     justify-content: center;
-    margin: auto 56px;
+    margin: auto 40px;
 }
 
 .results-card {
@@ -982,6 +899,7 @@ ul {
 .modal-title {
     display: flex;
     justify-content: center;
+    text-transform: uppercase;
 }
 
 .backdrop {
@@ -998,7 +916,7 @@ ul {
 
     opacity: 1;
     visibility: visible;
-    transition: 0.3s;
+    transition: 0.4s;
     z-index: 16;
 }
 
@@ -1131,20 +1049,24 @@ ul {
 
 
 /* Эффект для элемента, на который перешли по ссылке-якорю */
-.card:target {
-    animation: highlight-fade 4s;
+/* Эффект подсветки для обеих модалок */
+/* Изменили имя класса на .help-highlight, чтобы оно совпадало с JS */
+.card:target,
+.help-content.help-highlight {
+    display: block;
+    /* Гарантирует, что transform: scale сработает корректно */
+    animation: highlight-fade 4s ease-out;
     outline: none;
-    /* Убираем дефолтный фокус браузера */
+    will-change: transform, box-shadow;
+    /* Оптимизация для плавной анимации */
 }
 
 @keyframes highlight-fade {
     0% {
         background-color: rgba(255, 255, 255, 0.2);
-        /* Цвет вспышки */
         box-shadow: 0 0 20px var(--color-primary-light);
         border-color: var(--color-primary-light);
         transform: scale(1.02);
-        /* Легкое увеличение для акцента */
     }
 
     100% {
@@ -1175,43 +1097,87 @@ h4 {
 }
 
 /*PRICE-HELP*/
-/* Контейнер для заголовка и кнопки */
 .item-name {
     display: flex;
-    justify-content: center;
-    /* Выравнивает заголовок и кнопку строго по одной горизонтальной линии */
+    align-items: center;
     gap: 6px;
-    /* Маленький аккуратный отступ между текстом и кнопкой */
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 16px;
 }
 
-/* Кнопка-обертка */
+.item-name h4 {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .help-btn {
-
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-
-    /* Сделали чуть ярче в спокойном состоянии */
-}
-
-/* Сама картинка внутри кнопки */
-.help-icon {
-    /* Жестко задаем размеры, чтобы картинка не сжималась в 0 */
+    flex: 0 0 24px;
     width: 24px;
     height: 24px;
+    padding: 0;
+
+    display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    border: none;
 }
 
+.help-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
 
+    background-color: var(--color-primary-light);
+
+    -webkit-mask: url("/img/help-svg.svg") center / contain no-repeat;
+    mask: url("/img/help-svg.svg") center / contain no-repeat;
+
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.help-icon:hover {
+    background-color: var(--color-primary-light);
+    transform: scale(1.2);
+}
+
+/*MODAL-HELP*/
+.help-items {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.help-content {
+    border-radius: 18px;
+    border: 1px solid var(--color-primary-light);
+    padding: 12px;
+    margin: 12px auto;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1.help-name {
+    font-weight: 900;
+    font-size: 24px;
+    text-transform: uppercase;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .price-item {
     display: flex;
     align-items: baseline;
-    /* Выравнивание по базовой линии текста */
     margin-bottom: 12px;
     font-size: 16px;
     width: 100%;
@@ -1399,7 +1365,7 @@ h4 {
         position: sticky;
         top: 0;
         z-index: 10;
-        padding: 20px;
+        padding: 16px;
     }
 
     .header-container {
@@ -1583,16 +1549,16 @@ h4 {
 
     .modal {
         height: 100%;
-        width: 100%;
-        max-height: 700px;
+        width: 85%;
+        max-height: 650px;
         max-width: 400px;
         padding: 32px 10px 10px 10px;
 
         align-content: center;
     }
 
-    .modal-input-content {
-        margin: 12px;
+    .modal-polit {
+        margin-top: 70px;
     }
 
     .modal-button {
@@ -1689,8 +1655,9 @@ h4 {
         position: sticky;
         top: 0;
         z-index: 10;
-        padding: 20px;
+        padding: 14px;
         z-index: 10;
+        height: 120px;
     }
 
     .header-container {
